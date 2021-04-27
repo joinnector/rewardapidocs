@@ -1,0 +1,3313 @@
+openapi: 3.0.0
+info:
+  title: API reference
+  description: |-
+    nector.io is a loyalty and reward APIs platform, that allows businesses to reward deals, offers, wallet points to their customers for various actions.
+
+        - Fields commented as (Required) are required
+        
+        - Params are path variables
+
+        - Each body/query/path param has a type, for ex ("uuid", "string"..)
+        
+        - Lead means merchant's user.
+       
+        - Setting means a subscription.
+
+        - Basic Auth is support where username is your api key and password is your secret
+        
+        [DO NOT EXPOSE API SECRET IN FRONTEND]
+      For getting the supported mobile_code and country_code call the systeminfos API.
+  contact:
+    name: joinnector
+    url: 'https://nector.io'
+    email: product@nector.io
+  version: 1.2.0
+servers:
+  - url: 'https://platform.nector.io/api/open'
+    description: For the open API calls
+    variables: {}
+  - url: 'https://platform.nector.io/api/v2/merchant'
+    description: For the prod mode API calls
+    variables: {}
+  - url: 'https://devplatform.nector.io/api/v2/merchant'
+    description: For the dev mode API calls
+    variables: {}
+paths:
+  /systeminfos:
+    get:
+      tags:
+        - systeminfos
+      summary: Get systeminfos
+      description: This API fetches system information and various allowed enum values for different fields
+      operationId: Getsysteminfos
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/open'
+          variables: {}
+  '/settings/{id}':
+    get:
+      tags:
+        - subscriptions
+      summary: Get subscription
+      description: This API fetches the details of a subscription.
+      operationId: Getsubscription
+      parameters:
+        - name: id
+          in: path
+          description: (Required) (This can be any valid uuidv4 value)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  '/coupons/{id}':
+    get:
+      tags:
+        - coupons
+      summary: Get coupon
+      description: This API fetches details of a coupon.
+      operationId: Getcoupon
+      parameters:
+        - name: id
+          in: path
+          description: (Required)  (ID of the coupon)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  /coupons:
+    post:
+      tags:
+        - coupons
+      summary: Create coupon
+      description: This API creates a new coupon when user redeem a deal using wallet points. (A coupon is created against a deal)
+      operationId: Createcoupon
+      parameters:
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/merchant_create_coupons'
+            example:
+              lead_id: <uuid> (Required) (This needs to be leads _id value)
+              deal_id: <uuid> (Required) (This needs to be deals _id value)
+              currency_id: <uuid> (Required) (This needs to be currencies _id value)
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+    get:
+      tags:
+        - coupons
+      summary: Fetch coupons
+      description: This API fetches a list of coupons based on filters.
+      operationId: Fetchcoupons
+      parameters:
+        - name: lead_id
+          in: query
+          description: (Required) (ID of the lead)
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: deal_id
+          in: query
+          description: '(ID of the deal, passing this value will fetch only those coupons who were created for this deal)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: id
+          in: query
+          description: '(ID of the coupon, passing this will fetch only the coupon whose id matches with the supplied id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ''
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: '(This can only be one of ASC,DESC)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  /currencies:
+    get:
+      tags:
+        - currencies
+      summary: Fetch currencies
+      description: This API fetches a list of currencies based on filters.
+      operationId: Fetchcurrencies
+      parameters:
+        - name: currency_code
+          in: query
+          description: '(Minimum length is 3) (Maximum length is 4) (Code of the currency, passing this will fetch only currencies who has currency_code as the passed value)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: query
+          description: '(ID of the currency, passing this will fetch only the currency whose id matches with the supplied id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ''
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: '(This can only be one of ASC,DESC)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  '/currencies/{id}':
+    get:
+      tags:
+        - currencies
+      summary: Get currency
+      description: This API fetches the details of a currency.
+      operationId: Getcurrency
+      parameters:
+        - name: currency_code
+          in: query
+          description: (Currency Code of the currency) (Minimum length is 3) (Maximum length is 4)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: path
+          description: (Required) (ID of the currency)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  /dealrewards:
+    post:
+      tags:
+        - deals
+      summary: Create dealreward
+      description: 'This API creates a new scratch card, when you want reward your users with a deal call this API. (A scratch card is a coupon created against a deal) (If user does not exists it will create a new user if email or mobile is passed)'
+      operationId: Createdealreward
+      parameters:
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/merchant_create_dealrewards'
+            example:
+              deal_id: <uuid> (This needs to be deals _id value) (If not passed, deal will be selected automatically)
+              lead_id: <uuid> (This needs to be leads _id value) (One of lead_id, email and mobile is required)
+              email: <email> (This is email of the user) (One of lead_id, email and mobile is required)
+              mobile: 
+                mobile_code: <string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)
+                mobile: <string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  '/deals/{id}':
+    get:
+      tags:
+        - deals
+      summary: Get deal
+      description: |-
+        This API fetches details of a deal.
+
+        - (Passing id will fetch the details of a deal) - (Passing sku in query param, will requires any valid uuidv4 ID in the path, and fetch the details of a deal by sku)
+      operationId: Getdeal
+      parameters:
+        - name: sku
+          in: query
+          description: (SKU of the deal) (Maximum length is 40)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: path
+          description: (Required) (ID of the deal)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+  /deals:
+    get:
+      tags:
+        - deals
+      summary: Fetch deals
+      description: This API fetches a list of deals based on filters.
+      operationId: Fetchdeals
+      parameters:
+        - name: sku
+          in: query
+          description: (SKU of the deal) (Maximum length is 40)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: name
+          in: query
+          description: '(Name of the deal, passing this fetch only deals where name pattern matches the passed value)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: country
+          in: query
+          description: '(Name of the country, passing this fetch only deals where country matches the passed value) (This can only be one of ind)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: currency_code
+          in: query
+          description: (This can only be one of coin)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: type
+          in: query
+          description: '(This can only be one of general,private,exclusive, passing this will fetch only deals who has type as the passed value)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: provider
+          in: query
+          description: '(Identifier source of the deal, passing this will fetch only deals who belongs to the passed provider)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: category
+          in: query
+          description: '(Category of the deal, passing this will fetch only deals who belongs to the passed category)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sub_category
+          in: query
+          description: '(Sub-category of the deal, passing this will fetch only deals who belongs to the passed sub_category)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: query
+          description: '(ID of the deal, passing this will fetch only the deal whose id matches with the supplied id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ''
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: '(This can only be one of ASC,DESC)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  '/leads/{id}':
+    put:
+      tags:
+        - leads
+      summary: Update lead
+      description: This API updates a lead.
+      operationId: Updatelead
+      parameters:
+        - name: id
+          in: path
+          description: (Required) (ID of the lead)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/merchant_update_leads'
+            example:
+              email: <email> (This is email of the user)
+              mobile:
+                mobile_code: <string> (This can be one of supported mobile codes)
+                mobile: <string> (This is mobile number of the user between 4 to 12 digit chars )
+              name: <string> (This is name of this user)
+              dob: <string> (This is date of birth in the iso format of this user)
+              country: '<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+    get:
+      tags:
+        - leads
+      summary: Get lead
+      description: |-
+        This API fetches details of a lead.
+
+        - (Passing id will fetch the details of lead belongs to the merchant) - (Passing customerid as query param, requires any valid uuidv4 ID in the path, and will fetch the details of a lead by customerid) - (Passing email or mobile as query param, requires any valid uuidv4 ID in the path, and will fetch the details of a lead by email or mobile) - (Passing destinationswapid and email or mobile as query param, requires any valid uuidv4 ID in the path, and will fetch the details of a lead belongs to the partner merchant by email or mobile, This helps in user details sharing between two platform or facilitate the wallet points sharing among merchant leads or users.)
+      operationId: Getlead
+      parameters:
+        - name: mobile
+          in: query
+          description: '(Mobile of the lead, Passing this requires any valid uuidv4 in the path)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: email
+          in: query
+          description: '(Email of the lead, Passing this requires any valid uuidv4 in the path)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <email>
+        - name: destination_swap_id
+          in: query
+          description: '(Swap contract between two merchant platform, Passing this will fetch lead details of a merchant who is in strategic partnership with this merchant)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: id
+          in: path
+          description: '(Required) (ID of the lead, This can be any valid uuidv4 value if email or mobile query param is passed)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  /leads:
+    post:
+      tags:
+        - leads
+      summary: Create lead
+      description: This API creates a new lead. (A lead is a user of the merchant)
+      operationId: Createlead
+      parameters:
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/merchant_create_leads'
+            example:
+              customer_id: <string> (Required) (Minimum length is 4) (Maximum length is 64) (This needs to be your systems customer_id valye of this user)
+              email: <email> (This is email of the user)
+              mobile:
+                mobile_code: <string> (This can be one of supported mobile codes)
+                mobile: <string> (This is mobile number of the user between 4 to 12 digit chars )
+              name: <string> (This is name of this user)
+              dob: <string> (This is date of birth in the iso format of this user)
+              country: '<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+              currency_id: <uuid> (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  /reviews:
+    post:
+      tags:
+        - reviews
+      summary: Create review
+      description: This API creates a new review. (A review can be created against a deal)
+      operationId: Createreview
+      parameters:
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/merchant_create_reviews'
+            example:
+              lead_id: <uuid> (Required) (This needs to be leads _id value)
+              parent_id: <uuid> (Required) (This needs to be parent_type's _id value)
+              parent_type: <string> (Required) (This can only be one of deals)
+              title: <string> (Required)
+              description: <string>
+              rating: <number> (Minimum is 0) (Maximum is 5)
+              remarks: <string>
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+    get:
+      tags:
+        - reviews
+      summary: Fetch reviews
+      description: This API fetches a list of reviews based on filters.
+      operationId: Fetchreviews
+      parameters:
+        - name: lead_id
+          in: query
+          description: '(ID of the lead, passing this value will fetch only those reviews who were created by this lead)'
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: parent_id
+          in: query
+          description: '(ID of the parent for which the review was created, passing this value will fetch only those reviews who were created for this parent id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: parent_type
+          in: query
+          description: '(This can only be one of deals, passing this value will fetch only those reviews who were created for this parent type)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: query
+          description: '(ID of the review, passing this will fetch only the reviews whose id matches with the supplied id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ''
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: '(This can only be one of ASC,DESC)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  '/reviews/{id}':
+    get:
+      tags:
+        - reviews
+      summary: Get review
+      description: This API fetches details of a review.
+      operationId: Getreview
+      parameters:
+        - name: id
+          in: path
+          description: (Required) (ID of the review)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+    put:
+      tags:
+        - reviews
+      summary: Update review
+      description: This API updates a review.
+      operationId: Updatereview
+      parameters:
+        - name: id
+          in: path
+          description: (Required) (ID of the review)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/merchant_update_reviews'
+            example:
+              title: <string>
+              description: <string>
+              rating: <number> (Minimum is 0) (Maximum is 5)
+              remarks: <string>
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+    delete:
+      tags:
+        - reviews
+      summary: Delete review
+      description: This API deletes a review.
+      operationId: Deletereview
+      parameters:
+        - name: id
+          in: path
+          description: (Required)  (ID of the review)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  '/notifications/{id}':
+    get:
+      tags:
+        - notifications
+      summary: Get notification
+      description: This API fetches the details of the notification.
+      operationId: Getnotification
+      parameters:
+        - name: id
+          in: path
+          description: (Required) (ID of the notification)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  /notifications:
+    get:
+      tags:
+        - notifications
+      summary: Fetch notifications
+      description: This API fetches a list of notifications based on filters.
+      operationId: Fetchnotifications
+      parameters:
+        - name: lead_id
+          in: query
+          description: '(Required) (ID of the lead, passing this will fetch only leads who belongs to the lead)'
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: parent_id
+          in: query
+          description: '(ID of the parent, passing this will fetch only notifications who belongs to the parent id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: parent_type
+          in: query
+          description: '(This can only be one of admins,entities, passing this value will fetch only notifications who were created for this parent type)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: event
+          in: query
+          description: '(Event of the notification, passing this will fetch only notifications having the passing event value)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: query
+          description: '(ID of the notification, passing this will fetch only the notification whose id matches with the supplied id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ''
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: '(This can only be one of ASC,DESC)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  /swaps:
+    post:
+      tags:
+        - swaps
+      summary: Create swap
+      description: This API creates a new swap. (Wallet points exchange between two leads on different merchant platform)
+      operationId: Createswap
+      parameters:
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/merchant_create_swaps'
+            example:
+              swap_id: <uuid> (Required) (This needs to be swaps _id value)
+              source_lead_id: <uuid> (Required) (This needs to be your leads _id value)
+              destination_lead_id: <uuid> (Required) (This needs to be partner merchant's leads _id value)
+              amount: <number> (Required) (Minimum is 0) (Maximum is driven by contract rules)
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+    get:
+      tags:
+        - swaps
+      summary: Fetch swap
+      description: This API fetches a list of swaps based on filters.
+      operationId: Fetchswap
+      parameters:
+        - name: sku
+          in: query
+          description: (SKU of the swap) (Maximum length is 40)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: swap_id
+          in: query
+          description: '(ID of the connecting swap, passing this will fetch only swaps who has connecting swap id as passed value)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: currency_id
+          in: query
+          description: '(ID of the currency, passing this will fetch only swap who has currency as passed value)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: is_active
+          in: query
+          description: (Passing this will fetch only swap who are active)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <boolean>
+        - name: id
+          in: query
+          description: '(ID of the swap, passing this will fetch only the swap whose id matches with the supplied id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ''
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: '(This can only be one of ASC,DESC)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  '/swaps/{id}':
+    get:
+      tags:
+        - swaps
+      summary: Get swap
+      description: |-
+        This API fetches details of swap bridge.
+
+        - (Passing id will fetch the details of swap bridge) - (Passing sku in query params, will requires any valid uuidv4 ID in the path, and fetch the details of a swap bridge)
+      operationId: Getswap
+      parameters:
+        - name: sku
+          in: query
+          description: (SKU of the swap) (Maximum length is 40)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: path
+          description: (Required) (ID of the swap)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  /tasks:
+    get:
+      tags:
+        - tasks
+      summary: Fetch tasks
+      description: This API fetches a list of tasks based on filters.
+      operationId: Fetchtasks
+      parameters:
+        - name: sku
+          in: query
+          description: (SKU of the task) (Maximum length is 40)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: name
+          in: query
+          description: '(Name of the task, passing this fetch only tasks where name pattern matches the passed value)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: country
+          in: query
+          description: '(Name of the country, passing this fetch only deals where country matches the passed value) (This can only be one of ind)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: category
+          in: query
+          description: '(Category of the task, passing this fetch only tasks where category is passed value)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sub_category
+          in: query
+          description: '(Sub-category of the task, passing this fetch only tasks where sub-category is passed value)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: query
+          description: '(ID of the task, passing this will fetch only the task whose id matches with the supplied id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ''
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: '(This can only be one of ASC,DESC)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  '/tasks/{id}':
+    get:
+      tags:
+        - tasks
+      summary: Get task
+      description: |-
+        This API fetches details of a task.
+
+        - (Passing id will fetch the details of a task) - (Passing sku in query param, will requires any valid uuidv4 ID in the path, and fetch the details of a task)
+      operationId: Gettask
+      parameters:
+        - name: sku
+          in: query
+          description: (SKU of the task) (Maximum length is 40)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: path
+          description: (Required) (ID of the task)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  '/taskactivities/{id}':
+    get:
+      tags:
+        - taskactivities
+      summary: Get task activity
+      description: This API fetches details of a task activity.
+      operationId: Gettaskactivity
+      parameters:
+        - name: id
+          in: path
+          description: (Required) (ID of the task activity)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  /taskactivities:
+    post:
+      tags:
+        - taskactivities
+      summary: Create task activity
+      description: 'This API creates a new task activity, when you have created a task like make 3 payments to get rewarded, you shall notify us for each payment and we will create a activity at our side. Once there are 3 activities by a user we will automatically reward that user. (A task activity is created against a task)'
+      operationId: Createtaskactivity
+      parameters:
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/merchant_create_taskactivities'
+            example:
+              lead_id: <uuid> (Required) (This needs to be leads _id value)
+              task_id: <uuid> (Required) (This needs to be tasks _id value)
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+    get:
+      tags:
+        - taskactivities
+      summary: Fetch task activities
+      description: This API fetches a list of task activities based on filters.
+      operationId: Fetchtaskactivities
+      parameters:
+        - name: lead_id
+          in: query
+          description: (Required) (ID of the lead)
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: task_id
+          in: query
+          description: '(ID of the task, passing this value will fetch only those task activities who were created for this task)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: id
+          in: query
+          description: '(ID of the task activity, passing this will fetch only the task activity whose id matches with the supplied id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ''
+          style: form
+          explode: true
+          schema:
+            type: string
+            default: created_at
+            example: <string>
+        - name: sort_op
+          in: query
+          description: '(This can only be one of ASC,DESC)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            default: DESC
+            example: <string>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  /wallets:
+    post:
+      tags:
+        - wallets
+      summary: Create wallet
+      description: This API creates a new wallet. Wallets can be created by currencyid while creating leads. (A lead must have a wallet for rewards and redeems to work)
+      operationId: Createwallet
+      parameters:
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/merchant_create_wallets'
+            example:
+              lead_id: <uuid> (Required) (This needs to be leads _id value)
+              currency_id: <uuid> (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
+              available: <number> (Minimum is 0)
+              reserve: <number> (Minimum is 0)
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+    get:
+      tags:
+        - wallets
+      summary: Fetch wallets
+      description: This API fetches a list of wallets based on filters.
+      operationId: Fetchwallets
+      parameters:
+        - name: lead_id
+          in: query
+          description: (Required) (ID of the lead)
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: currency_id
+          in: query
+          description: '(ID of the currency, passing this will fetch only wallets who belongs to the passed wallet id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: id
+          in: query
+          description: '(ID of the wallet, passing this will fetch only the wallet whose id matches with the supplied id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ''
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: '(This can only be one of ASC,DESC)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  '/wallets/{id}':
+    get:
+      tags:
+        - wallets
+      summary: Get wallet
+      description: This API fetches the details of a wallet.
+      operationId: Getwallet
+      parameters:
+        - name: id
+          in: path
+          description: (Required) (ID of the wallet)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  /wallettransactions:
+    get:
+      tags:
+        - wallettransactions
+      summary: Fetch wallet transactions
+      description: This API fetches a list of wallet transactions based on filters.
+      operationId: Fetchwallettransactions
+      parameters:
+        - name: lead_id
+          in: query
+          description: (Required)  (ID of the lead)
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: wallet_id
+          in: query
+          description: '(ID of the wallet, passing this value will fetch only those wallet transactions who were created for this wallet)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: parent_id
+          in: query
+          description: '(ID of the parent for which the wallet transaction was created, passing this value will fetch only those wallet transactions who were created for this parent id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: parent_type
+          in: query
+          description: '(This can only be one of swaps,coupons,task activities, passing this value will fetch only those wallet transactions who were created for this parent type)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: query
+          description: '(ID of the wallet transaction, passing this will fetch only the wallet transaction whose id matches with the supplied id)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ''
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: '(This can only be one of ASC,DESC)'
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+    post:
+      tags:
+        - wallettransactions
+      summary: Create wallet transaction
+      description: 'This API creates a new wallet transaction. If you want to reward your user with wallet points create a wallet transaction of type reward, or if you want to deduct or adjust wallet points create a wallet transaction of type adjust. When user redeem deals using wallet points a wallet transaction of type redeem is created automatically. (A wallet transaction is created against a wallet)'
+      operationId: Createwallettransaction
+      parameters:
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/merchant_create_wallettransactions'
+            example:
+              wallet_id: <uuid> (Required) (This needs to be wallets _id value)
+              amount: <number> (Required) (Minimum is 0)
+              hash: <string> (Required) (Unique transaction hash value)
+              operation: '<string> (Required) (This can only be one of cr,dr)'
+              type: '<string> (This can only be one of reward,adjust)'
+              status: <string> (This can only be one of success)
+              remarks: <string>
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+  '/wallettransactions/{id}':
+    get:
+      tags:
+        - wallettransactions
+      summary: Get wallet transaction
+      description: This API fetches details of a wallet transaction.
+      operationId: Getwallettransaction
+      parameters:
+        - name: id
+          in: path
+          description: (Required)  (ID of the wallet transaction)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+components:
+  schemas:
+    success:
+      title: success
+      required:
+        - meta
+        - data
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/meta'
+        data:
+          type: object
+      example:
+        meta:
+          request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+          code: -95107895
+          status: U
+        data: {}
+    merchant_update_reviews:
+      title: merchant_update_reviews
+      type: object
+      properties:
+        title:
+          type: string
+          description: (Title of the review)
+        description:
+          type: string
+          description: (Description of the review)
+        rating:
+          type: string
+          description: (Minimum is 0) (Maximum is 5)
+        remarks:
+          type: string
+          description: (Remark of the review)
+      example:
+        title: <string>
+        description: <string>
+        rating: <number> (Minimum is 0) (Maximum is 5)
+        remarks: <string>
+    merchant_create_reviews:
+      title: merchant_create_reviews
+      type: object
+      required:
+        - lead_id
+        - parent_id
+        - parent_type
+        - title
+      properties:
+        lead_id:
+          type: string
+          description: (Required) (This needs to be leads _id value)
+        parent_id:
+          type: string
+          description: (Required) (This needs to be parent_type's _id value)
+        parent_type:
+          type: string
+          description: (Required) (This can only be one of deals)
+        title:
+          type: string
+          description: (Required)
+        description:
+          type: string
+          description: (Description of the review)
+        rating:
+          type: string
+          description: (Minimum is 0) (Maximum is 5)
+        remarks:
+          type: string
+          description: (Remark of the review)
+      example:
+        lead_id: <uuid> (Required) (This needs to be leads _id value)
+        parent_id: <uuid> (Required) (This needs to be parent_type's _id value)
+        parent_type: <string> (Required) (This can only be one of deals)
+        title: <string> (Required)
+        description: <string>
+        rating: <number> (Minimum is 0) (Maximum is 5)
+        remarks: <string>
+    merchant_create_taskactivities:
+      title: merchant_create_taskactivities
+      required:
+        - lead_id
+        - task_id
+      type: object
+      properties:
+        lead_id:
+          type: string
+          description: (Required) (This needs to be leads _id value)
+        task_id:
+          type: string
+          description: (Required) (This needs to be tasks _id value)
+      example:
+        lead_id: <uuid> (Required) (This needs to be leads _id value)
+        task_id: <uuid> (Required) (This needs to be tasks _id value)
+    merchant_create_dealrewards:
+      title: merchant_create_dealrewards
+      type: object
+      properties:
+        deal_id:
+          type: string
+          description: (This needs to be deals _id value)
+        lead_id:
+          type: string
+          description: (This needs to be leads _id value) (One of lead_id, email and mobile is required)
+        email:
+          type: string
+          description: (This is email of the user) (One of lead_id, email and mobile is required)
+        mobile:
+          $ref: '#/components/schemas/lead_mobile'
+      example:
+        deal_id: <uuid> (This needs to be deals _id value) (If not passed, deal will be selected automatically)
+        lead_id: <uuid> (This needs to be leads _id value) (One of lead_id, email and mobile is required)
+        email: <email> (This is email of the user) (One of lead_id, email and mobile is required)
+        mobile: 
+          mobile_code: <string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)
+          mobile: <string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)
+    merchant_update_leads:
+      title: merchant_update_leads
+      type: object
+      properties:
+        email:
+          type: string
+          description: (This is email of the user)
+        mobile:
+          $ref: '#/components/schemas/lead_mobile'
+        name:
+          type: string
+          description: (This is name of this user)
+        dob:
+          type: string
+          description: (This is date of birth in the iso format of this user)
+        country:
+          type: string
+          description: '(This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+      example:
+        email: <email> (This is email of the user)
+        mobile:
+          mobile_code: <string> (This can be one of supported mobile codes)
+          mobile: <string> (This is mobile number of the user between 4 to 12 digit chars )
+        name: <string> (This is name of this user)
+        dob: <string> (This is date of birth in the iso format of this user)
+        country: '<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+    merchant_create_wallettransactions:
+      title: merchant_create_wallettransactions
+      required:
+        - wallet_id
+        - amount
+        - hash
+        - operation
+      type: object
+      properties:
+        wallet_id:
+          type: string
+          description: (Required) (This needs to be wallets _id value)
+        amount:
+          type: string
+          description: (Required) (Minimum is 0)
+        hash:
+          type: string
+          description: (Required) (Unique transaction hash value)
+        operation:
+          type: string
+          description: '(Required) (This can only be one of cr,dr)'
+        type:
+          type: string
+          description: '<string> (This can only be one of reward,adjust)'
+        status:
+          type: string
+          description: (This can only be one of success)
+        remarks:
+          type: string
+      example:
+        wallet_id: <uuid> (Required) (This needs to be wallets _id value)
+        amount: <number> (Required) (Minimum is 0)
+        hash: <string> (Required) (Unique transaction hash value)
+        operation: '<string> (Required) (This can only be one of cr,dr)'
+        type: '<string> (This can only be one of reward,adjust)'
+        status: <string> (This can only be one of success)
+        remarks: <string>
+    merchant_create_coupons:
+      title: merchant_create_coupons
+      required:
+        - lead_id
+        - deal_id
+        - currency_id
+      type: object
+      properties:
+        lead_id:
+          type: string
+          description: (Required) (This needs to be leads _id value)
+        deal_id:
+          type: string
+          description: (Required) (This needs to be deals _id value)
+        currency_id:
+          type: string
+          description: (Required) (This needs to be currencies _id value)
+      example:
+        lead_id: <uuid> (Required) (This needs to be leads _id value)
+        deal_id: <uuid> (Required) (This needs to be deals _id value)
+        currency_id: <uuid> (Required) (This needs to be currencies _id value)
+      description: ''
+      x-examples: {}
+    merchant_create_leads:
+      title: merchant_create_leads
+      required:
+        - customer_id
+      type: object
+      properties:
+        customer_id:
+          type: string
+          description: (Required) (Minimum length is 4) (Maximum length is 64) (This needs to be your systems customer_id valye of this user)
+        email:
+          type: string
+          description: (This is email of the user or dummy email like customer_id@merchant.com)
+        mobile:
+          $ref: '#/components/schemas/lead_mobile'
+        name:
+          type: string
+          description: (This is name of this user)
+        dob:
+          type: string
+          description: (This is date of birth in the iso format of this user)
+        country:
+          type: string
+          description: '(This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+        currency_id:
+          type: string
+          description: (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
+      example:
+        customer_id: <string> (Required) (Minimum length is 4) (Maximum length is 64) (This needs to be your systems customer_id valye of this user)
+        email: <email> (This is email of the user or dummy email like customer_id@merchant.com)
+        mobile:
+          mobile_code: <string> (This can be one of supported mobile codes)
+          mobile: <string> (This is mobile number of the user or dummy mobile number between 4 to 12 digit chars )
+        name: <string> (This is name of this user)
+        dob: <string> (This is date of birth in the iso format of this user)
+        country: '<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+        currency_id: <uuid> (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
+    merchant_create_wallets:
+      title: merchant_create_wallets
+      required:
+        - lead_id
+      type: object
+      properties:
+        lead_id:
+          type: string
+          description: (Required) (This needs to be leads _id value)
+        currency_id:
+          type: string
+          description: (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
+        available:
+          type: string
+          description: (Minimum is 0)
+        reserve:
+          type: string
+          description: (Minimum is 0)
+      example:
+        lead_id: <uuid> (Required) (This needs to be leads _id value)
+        currency_id: <uuid> (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
+        available: <number> (Minimum is 0)
+        reserve: <number> (Minimum is 0)
+    lead_mobile:
+      title: lead_mobile
+      required:
+        - mobile_code
+        - mobile
+      type: object
+      properties:
+        mobile_code:
+          type: string
+          description: '(Required) (This can be only one of 61,880,55,1,33,49,852,91,972,39,82,52,64,92,63,65,27,66,971,44,1)'
+        mobile:
+          type: string
+          description: (Required) (Minimum length is 4) (Maximum length is 12)
+      example:
+        mobile_code: '<string> (Required) (This can be only one of 61,880,55,1,33,49,852,91,972,39,82,52,64,92,63,65,27,66,971,44,1)'
+        mobile: <string> (Required) (Minimum length is 4) (Maximum length is 12)
+      description: ''
+    merchant_create_swaps:
+      title: merchant_create_swaps
+      required:
+        - swap_id
+        - source_lead_id
+        - destination_lead_id
+        - amount
+      type: object
+      properties:
+        swap_id:
+          type: string
+          description: (Required) (This needs to be swaps _id value)
+        source_lead_id:
+          type: string
+          description: (Required) (This needs to be your leads _id value)
+        destination_lead_id:
+          type: string
+          description: (Required) (This needs to be partner merchant's leads _id value)
+        amount:
+          type: string
+          description: (Required) (Minimum is 0) (Maximum is driven by contract rules)
+      example:
+        swap_id: <uuid> (Required) (This needs to be swaps _id value)
+        source_lead_id: <uuid> (Required) (This needs to be your leads _id value)
+        destination_lead_id: <uuid> (Required) (This needs to be partner merchant's leads _id value)
+        amount: <number> (Required) (Minimum is 0) (Maximum is driven by contract rules)
+    meta:
+      title: meta
+      required:
+        - request_id
+        - code
+        - status
+      type: object
+      properties:
+        request_id:
+          type: string
+        code:
+          type: integer
+          format: int32
+        status:
+          type: string
+      example:
+        request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+        code: 200
+        status: success
+    error:
+      title: error
+      required:
+        - meta
+        - data
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/meta'
+        data:
+          type: object
+      description: ''
+      example:
+        meta:
+          request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+          code: 200
+          status: success
+        data: {}
+  securitySchemes:
+    httpBasic:
+      type: http
+      scheme: basic
+security:
+  - httpBasic: []
+tags:
+  - name: subscriptions
+  - name: coupons
+  - name: currencies
+  - name: deals
+  - name: leads
+  - name: reviews
+  - name: notifications
+  - name: swaps
+  - name: tasks
+  - name: taskactivities
+  - name: wallets
+  - name: wallettransactions

@@ -13,8 +13,6 @@ info:
         - Lead means merchant's user.
        
         - Setting means a subscription.
-
-        - Basic Auth is support where username is your api key and password is your secret
         
         [DO NOT EXPOSE API SECRET IN FRONTEND]
       For getting the supported mobile_code and country_code call the systeminfos API.

@@ -596,6 +596,10 @@ paths:
               mobile: 
                 mobile_code: <string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)
                 mobile: <string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)
+              category_range: [(This is deal categories) (If not passed, deal will be selected based on categories passed)]
+              price_range:
+                min: <string> (This is deals min sell price in nector coin) (If one of them is passed then both are required)
+                max: <string> (This is deals max sell price in nector coin) (If one of them is passed then both are required) 
         required: true
       responses:
         '200':
@@ -3058,6 +3062,12 @@ components:
           description: (This is email of the user) (One of lead_id, email and mobile is required)
         mobile:
           $ref: '#/components/schemas/lead_mobile'
+        category_range:
+          type: array
+          description: (This is deal categories) (If not passed, deal will be selected based on categories passed)
+        price_range:
+          type: object
+          description: (This is deal sell price range in nector coin) (If not passed, deal will be selected between min and max sell price)
       example:
         deal_id: <uuid> (This needs to be deals _id value) (If not passed, deal will be selected automatically)
         lead_id: <uuid> (This needs to be leads _id value) (One of lead_id, email and mobile is required)
@@ -3065,6 +3075,10 @@ components:
         mobile: 
           mobile_code: <string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)
           mobile: <string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)
+        category_range: [(This is deal categories) (If not passed, deal will be selected based on categories passed)]
+        price_range:
+          min: <string> (This is deals min sell price in nector coin) (If one of them is passed then other is required)
+          max: <string> (This is deals max sell price in nector coin) (If one of them is passed then other is required) 
     merchant_update_leads:
       title: merchant_update_leads
       type: object

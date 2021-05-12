@@ -596,7 +596,8 @@ paths:
               mobile: 
                 mobile_code: <string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)
                 mobile: <string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)
-              category_range: [(This is deal categories) (If not passed, deal will be selected based on categories passed)]
+              category_range: [(These are deal categories) (If passed, deal will be selected based on categories passed)]
+              country_range: [(These are deal countries) (If passed, deal will be selected based on countries passed)]
               price_range:
                 min: <string> (This is deals min sell price in nector coin) (If one of them is passed then both are required)
                 max: <string> (This is deals max sell price in nector coin) (If one of them is passed then both are required) 
@@ -3081,7 +3082,10 @@ components:
           $ref: '#/components/schemas/lead_mobile'
         category_range:
           type: array
-          description: (This is deal categories) (If not passed, deal will be selected based on categories passed)
+          description: (These are deal categories) (If passed, deal will be selected based on categories passed)
+        country_range:
+          type: array
+          description: (These are deal countries) (If passed, deal will be selected based on countries passed)
         price_range:
           type: object
           description: (This is deal sell price range in nector coin) (If not passed, deal will be selected between min and max sell price)
@@ -3095,7 +3099,8 @@ components:
         mobile: 
           mobile_code: <string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)
           mobile: <string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)
-        category_range: [(This is deal categories) (If not passed, deal will be selected based on categories passed)]
+        category_range: [(These are deal categories) (If passed, deal will be selected based on categories passed)]
+        country_range: [(These are deal countries) (If passed, deal will be selected based on countries passed)]
         price_range:
           min: <string> (This is deals min sell price in nector coin) (If one of them is passed then other is required)
           max: <string> (This is deals max sell price in nector coin) (If one of them is passed then other is required) 

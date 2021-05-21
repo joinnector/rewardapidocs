@@ -590,18 +590,22 @@ paths:
             schema:
               $ref: '#/components/schemas/merchant_create_dealrewards'
             example:
-              deal_id: <uuid> (This needs to be deals _id value) (If not passed, deal will be selected automatically)
-              lead_id: <uuid> (This needs to be leads _id value) (One of lead_id, email and mobile is required)
-              email: <email> (This is email of the user) (One of lead_id, email and mobile is required)
-              mobile: 
-                mobile_code: <string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)
-                mobile: <string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)
-              category_range: [(These are deal categories) (If passed, deal will be selected based on categories passed)]
-              country_range: [(These are deal countries) (If passed, deal will be selected based on countries passed)]
+              deal_id: '<uuid> (This needs to be deals _id value) (If not passed, deal will be selected automatically)'
+              lead_id: '<uuid> (This needs to be leads _id value) (One of lead_id, email and mobile is required)'
+              email: '<email> (This is email of the user) (One of lead_id, email and mobile is required)'
+              mobile:
+                mobile_code: '<string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)'
+                mobile: '<string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)'
+              category_range:
+                - (These are deal categories) (If passed
+                - deal will be selected based on categories passed)
+              country_range:
+                - (These are deal countries) (If passed
+                - deal will be selected based on countries passed)
               price_range:
                 min: <string> (This is deals min sell price in nector coin) (If one of them is passed then both are required)
-                max: <string> (This is deals max sell price in nector coin) (If one of them is passed then both are required) 
-              merchant_trace: 
+                max: <string> (This is deals max sell price in nector coin) (If one of them is passed then both are required)
+              merchant_trace:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
@@ -916,7 +920,7 @@ paths:
               name: <string> (This is name of this user)
               dob: <string> (This is date of birth in the iso format of this user)
               country: '<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
-              merchant_trace: 
+              merchant_trace:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
@@ -1086,7 +1090,7 @@ paths:
               dob: <string> (This is date of birth in the iso format of this user)
               country: '<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
               currency_id: <uuid> (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
-              merchant_trace: 
+              merchant_trace:
                 nykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
@@ -1755,7 +1759,7 @@ paths:
               source_lead_id: <uuid> (Required) (This needs to be your leads _id value)
               destination_lead_id: <uuid> (Required) (This needs to be partner merchant's leads _id value)
               amount: <number> (Required) (Minimum is 0) (Maximum is driven by contract rules)
-              merchant_trace: 
+              merchant_trace:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
@@ -2301,7 +2305,7 @@ paths:
             example:
               lead_id: <uuid> (Required) (This needs to be leads _id value)
               task_id: <uuid> (Required) (This needs to be tasks _id value)
-              merchant_trace: 
+              merchant_trace:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
@@ -2868,7 +2872,7 @@ paths:
               type: '<string> (This can only be one of reward,adjust)'
               status: <string> (This can only be one of success)
               remarks: <string>
-              merchant_trace: 
+              merchant_trace:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
@@ -2934,6 +2938,87 @@ paths:
           schema:
             type: string
             example: <number>
+      responses:
+        '200':
+          description: ''
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/success'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/error'
+              example:
+                meta:
+                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
+                  code: -95107895
+                  status: U
+                data: {}
+      deprecated: false
+      servers:
+        - url: 'https://platform.nector.io/api/v2/merchant'
+          variables: {}
+        - url: 'https://devplatform.nector.io/api/v2/merchant'
+          variables: {}
+    put:
+      tags:
+        - wallettransactions
+      summary: Update wallet transaction
+      description: This API updates a wallettransaction.
+      operationId: Updatewallettransactions
+      parameters:
+        - name: id
+          in: path
+          description: (Required) (ID of the lead)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: '(Required)  (This can only be one of mobile,unix,web)'
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ''
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/merchant_update_wallettransactions'
+            example:
+              status: <email> (This is email of the user)
+              remarks: '<string>'
+              merchant_trace:
+                anykey: <string> (Pass anything that needs to deligated to API webhook)
+        required: true
       responses:
         '200':
           description: ''
@@ -3063,7 +3148,7 @@ components:
       example:
         lead_id: <uuid> (Required) (This needs to be leads _id value)
         task_id: <uuid> (Required) (This needs to be tasks _id value)
-        merchant_trace: 
+        merchant_trace:
           anykey: <string> (Pass anything that needs to deligated to API webhook)
     merchant_create_dealrewards:
       title: merchant_create_dealrewards
@@ -3074,37 +3159,41 @@ components:
           description: (This needs to be deals _id value)
         lead_id:
           type: string
-          description: (This needs to be leads _id value) (One of lead_id, email and mobile is required)
+          description: '(This needs to be leads _id value) (One of lead_id, email and mobile is required)'
         email:
           type: string
-          description: (This is email of the user) (One of lead_id, email and mobile is required)
+          description: '(This is email of the user) (One of lead_id, email and mobile is required)'
         mobile:
           $ref: '#/components/schemas/lead_mobile'
         category_range:
           type: array
-          description: (These are deal categories) (If passed, deal will be selected based on categories passed)
+          description: '(These are deal categories) (If passed, deal will be selected based on categories passed)'
         country_range:
           type: array
-          description: (These are deal countries) (If passed, deal will be selected based on countries passed)
+          description: '(These are deal countries) (If passed, deal will be selected based on countries passed)'
         price_range:
           type: object
-          description: (This is deal sell price range in nector coin) (If not passed, deal will be selected between min and max sell price)
+          description: '(This is deal sell price range in nector coin) (If not passed, deal will be selected between min and max sell price)'
         merchant_trace:
           type: object
           description: (Pass anything that needs to deligated to API webhook)
       example:
-        deal_id: <uuid> (This needs to be deals _id value) (If not passed, deal will be selected automatically)
-        lead_id: <uuid> (This needs to be leads _id value) (One of lead_id, email and mobile is required)
-        email: <email> (This is email of the user) (One of lead_id, email and mobile is required)
-        mobile: 
-          mobile_code: <string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)
-          mobile: <string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)
-        category_range: [(These are deal categories) (If passed, deal will be selected based on categories passed)]
-        country_range: [(These are deal countries) (If passed, deal will be selected based on countries passed)]
+        deal_id: '<uuid> (This needs to be deals _id value) (If not passed, deal will be selected automatically)'
+        lead_id: '<uuid> (This needs to be leads _id value) (One of lead_id, email and mobile is required)'
+        email: '<email> (This is email of the user) (One of lead_id, email and mobile is required)'
+        mobile:
+          mobile_code: '<string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)'
+          mobile: '<string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)'
+        category_range:
+          - (These are deal categories) (If passed
+          - deal will be selected based on categories passed)
+        country_range:
+          - (These are deal countries) (If passed
+          - deal will be selected based on countries passed)
         price_range:
           min: <string> (This is deals min sell price in nector coin) (If one of them is passed then other is required)
-          max: <string> (This is deals max sell price in nector coin) (If one of them is passed then other is required) 
-        merchant_trace: 
+          max: <string> (This is deals max sell price in nector coin) (If one of them is passed then other is required)
+        merchant_trace:
           anykey: <string> (Pass anything that needs to deligated to API webhook)
     merchant_update_leads:
       title: merchant_update_leads
@@ -3135,7 +3224,7 @@ components:
         name: <string> (This is name of this user)
         dob: <string> (This is date of birth in the iso format of this user)
         country: '<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
-        merchant_trace: 
+        merchant_trace:
           anykey: <string> (Pass anything that needs to deligated to API webhook)
     merchant_create_wallettransactions:
       title: merchant_create_wallettransactions
@@ -3177,7 +3266,7 @@ components:
         type: '<string> (This can only be one of reward,adjust)'
         status: <string> (This can only be one of success)
         remarks: <string>
-        merchant_trace: 
+        merchant_trace:
           anykey: <string> (Pass anything that needs to deligated to API webhook)
     merchant_create_coupons:
       title: merchant_create_coupons
@@ -3200,8 +3289,6 @@ components:
         lead_id: <uuid> (Required) (This needs to be leads _id value)
         deal_id: <uuid> (Required) (This needs to be deals _id value)
         currency_id: <uuid> (Required) (This needs to be currencies _id value)
-      description: ''
-      x-examples: {}
     merchant_create_leads:
       title: merchant_create_leads
       required:
@@ -3241,7 +3328,7 @@ components:
         dob: <string> (This is date of birth in the iso format of this user)
         country: '<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
         currency_id: <uuid> (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
-        merchant_trace: 
+        merchant_trace:
           anykey: <string> (Pass anything that needs to deligated to API webhook)
     merchant_create_wallets:
       title: merchant_create_wallets
@@ -3312,7 +3399,7 @@ components:
         source_lead_id: <uuid> (Required) (This needs to be your leads _id value)
         destination_lead_id: <uuid> (Required) (This needs to be partner merchant's leads _id value)
         amount: <number> (Required) (Minimum is 0) (Maximum is driven by contract rules)
-        merchant_trace: 
+        merchant_trace:
           anykey: <string> (Pass anything that needs to deligated to API webhook)
     meta:
       title: meta
@@ -3351,6 +3438,23 @@ components:
           code: 200
           status: success
         data: {}
+    merchant_update_wallettransactions:
+      title: merchant_update_wallettransactions
+      type: object
+      properties:
+        status:
+          type: string
+          description: (This can only be one of success)
+        remarks:
+          type: string
+        merchant_trace:
+          type: object
+          description: (Pass anything that needs to deligated to API webhook)
+      example:
+        status: <string> (This can only be one of success)
+        remarks: <string>
+        merchant_trace:
+          anykey: <string> (Pass anything that needs to deligated to API webhook)
   securitySchemes:
     httpBasic:
       type: http

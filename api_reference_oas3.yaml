@@ -44,24 +44,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/open'
@@ -105,24 +95,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -168,24 +148,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -241,24 +211,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -352,24 +312,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -455,24 +405,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -526,24 +466,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -613,24 +543,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -687,24 +607,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
   /deals:
     get:
@@ -841,24 +751,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -928,24 +828,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -1017,24 +907,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -1098,24 +978,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -1175,24 +1045,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -1294,24 +1154,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -1357,24 +1207,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -1438,24 +1278,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -1500,24 +1330,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -1563,24 +1383,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -1691,24 +1501,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -1767,24 +1567,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -1893,24 +1683,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -1967,24 +1747,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -2102,24 +1872,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -2176,24 +1936,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -2239,24 +1989,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -2313,24 +2053,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -2426,24 +2156,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -2500,24 +2220,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -2611,24 +2321,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -2674,24 +2374,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -2802,24 +2492,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -2880,24 +2560,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -2943,24 +2613,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -3024,24 +2684,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/success'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
         '500':
-          description: Internal Server Error
+          description: ''
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/error'
-              example:
-                meta:
-                  request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-                  code: -95107895
-                  status: U
-                data: {}
+              
       deprecated: false
       servers:
         - url: 'https://platform.nector.io/api/v2/merchant'
@@ -3058,14 +2708,25 @@ components:
       type: object
       properties:
         meta:
-          $ref: '#/components/schemas/meta'
+          type: object
         data:
           type: object
       example:
+        meta: {}
+        data: {}
+    error:
+      title: error
+      required:
+        - meta
+        - data
+      type: object
+      properties:
         meta:
-          request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-          code: -95107895
-          status: U
+          type: object
+        data:
+          type: object
+      example:
+        meta: {}
         data: {}
     merchant_update_reviews:
       title: merchant_update_reviews
@@ -3398,43 +3059,6 @@ components:
         amount: <number> (Required) (Minimum is 0) (Maximum is driven by contract rules)
         merchant_trace:
           anykey: <string> (Pass anything that needs to deligated to API webhook)
-    meta:
-      title: meta
-      required:
-        - request_id
-        - code
-        - status
-      type: object
-      properties:
-        request_id:
-          type: string
-        code:
-          type: integer
-          format: int32
-        status:
-          type: string
-      example:
-        request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-        code: 200
-        status: success
-    error:
-      title: error
-      required:
-        - meta
-        - data
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/meta'
-        data:
-          type: object
-      description: ''
-      example:
-        meta:
-          request_id: 473b4c84-ab80-c4d1-e98d-d563e9a0c50f
-          code: 200
-          status: success
-        data: {}
     merchant_update_wallettransactions:
       title: merchant_update_wallettransactions
       type: object

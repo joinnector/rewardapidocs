@@ -15,17 +15,17 @@ info:
     In order to get started create an account on https://merchant.nector.io and refer to https://docs.nector.io
   contact:
     name: joinnector
-    url: 'https://nector.io'
+    url: "https://nector.io"
     email: product@nector.io
   version: 1.2.0
 servers:
-  - url: 'https://platform.nector.io/api/open'
+  - url: "https://platform.nector.io/api/open"
     description: For the open API calls
     variables: {}
-  - url: 'https://platform.nector.io/api/v2/merchant'
+  - url: "https://platform.nector.io/api/v2/merchant"
     description: For the prod mode API calls
     variables: {}
-  - url: 'https://devplatform.nector.io/api/v2/merchant'
+  - url: "https://devplatform.nector.io/api/v2/merchant"
     description: For the dev mode API calls
     variables: {}
 paths:
@@ -37,26 +37,26 @@ paths:
       description: This API fetches system information and various allowed enum values for different fields
       operationId: Getsysteminfos
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/error"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/open'
+        - url: "https://platform.nector.io/api/open"
           variables: {}
-  '/settings/{id}':
+  "/settings/{id}":
     get:
       tags:
         - subscriptions
@@ -74,7 +74,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -82,34 +82,34 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/error"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-  '/coupons/{id}':
+  "/coupons/{id}":
     get:
       tags:
         - coupons
@@ -127,7 +127,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -135,32 +135,32 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
   /coupons:
     post:
@@ -172,7 +172,7 @@ paths:
       parameters:
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -180,50 +180,50 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
         - name: x-signature
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <string>
       requestBody:
-        description: ''
+        description: ""
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/merchant_create_coupons'
+              $ref: "#/components/schemas/merchant_create_coupons"
             example:
               lead_id: <uuid> (Required) (This needs to be leads _id value)
               deal_id: <uuid> (Required) (This needs to be deals _id value)
               currency_id: <uuid> (Required) (This needs to be currencies _id value)
         required: true
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
     get:
       tags:
@@ -243,7 +243,7 @@ paths:
             example: <uuid>
         - name: deal_id
           in: query
-          description: '(ID of the deal, passing this value will fetch only those coupons who were created for this deal)'
+          description: "(ID of the deal, passing this value will fetch only those coupons who were created for this deal)"
           style: form
           explode: true
           schema:
@@ -251,7 +251,7 @@ paths:
             example: <uuid>
         - name: id
           in: query
-          description: '(ID of the coupon, passing this will fetch only the coupon whose id matches with the supplied id)'
+          description: "(ID of the coupon, passing this will fetch only the coupon whose id matches with the supplied id)"
           style: form
           explode: true
           schema:
@@ -275,7 +275,7 @@ paths:
             example: <integer>
         - name: sort
           in: query
-          description: ''
+          description: ""
           style: form
           explode: true
           schema:
@@ -283,7 +283,7 @@ paths:
             example: <string>
         - name: sort_op
           in: query
-          description: '(This can only be one of ASC,DESC)'
+          description: "(This can only be one of ASC,DESC)"
           style: form
           explode: true
           schema:
@@ -291,7 +291,7 @@ paths:
             example: <string>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -299,253 +299,32 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-              
-      deprecated: false
-      servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
-          variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
-          variables: {}
-  /offers:
-    get:
-      tags:
-        - offers
-      summary: Fetch offers
-      description: This API fetches a list of offers based on filters.
-      operationId: Fetchoffers
-      parameters:
-        - name: parent_id
-          in: query
-          description: '(ID of the parent for which the offer was created, passing this value will fetch only those offers who were created for this parent id)'
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: parent_type
-          in: query
-          description: '(This can only be one of entities, stores passing this value will fetch only those offers who were created for this parent type)'
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: sku
-          in: query
-          description: (SKU of the offer) (Maximum length is 40)
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: name
-          in: query
-          description: '(Name of the offer, passing this fetch only offers where name pattern matches the passed value)'
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: country
-          in: query
-          description: '(Name of the country, passing this fetch only offers where country matches the passed value) (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: type
-          in: query
-          description: '(This can only be one of general,meet,goodies, passing this will fetch only offers who has type as the passed value)'
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: provider
-          in: query
-          description: '(Identifier source of the offer, passing this will fetch only offers who belongs to the passed provider)'
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: category
-          in: query
-          description: '(Category of the offer, passing this will fetch only offers who belongs to the passed category)'
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: sub_category
-          in: query
-          description: '(Sub-category of the offer, passing this will fetch only offers who belongs to the passed sub_category)'
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: id
-          in: query
-          description: '(ID of the currency, passing this will fetch only the currency whose id matches with the supplied id)'
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <uuid>
-        - name: page
-          in: query
-          description: (Minimum is 1)
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <integer>
-        - name: limit
-          in: query
-          description: (Minimum is 1) (Maximum is 1000)
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <integer>
-        - name: sort
-          in: query
-          description: ''
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: sort_op
-          in: query
-          description: '(This can only be one of ASC,DESC)'
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: x-source
-          in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
-          required: true
-          style: simple
-          schema:
-            type: string
-            example: <string>
-        - name: x-timestamp
-          in: header
-          description: ''
-          style: simple
-          schema:
-            type: string
-            example: <number>
-      responses:
-        '200':
-          description: ''
-          headers: {}
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-              
-      deprecated: false
-      servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
-          variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
-          variables: {}
-  '/offers/{id}':
-    get:
-      tags:
-        - offers
-      summary: Get offer
-      description: |-
-        This API fetches details of a offer.
+                $ref: "#/components/schemas/success"
 
-        - (Passing id will fetch the details of a offer) - (Passing sku in query param, will requires any valid uuidv4 ID in the path, and fetch the details of a offer by sku)
-      operationId: Getoffer
-      parameters:
-        - name: sku
-          in: query
-          description: (SKU of the offer) (Maximum length is 40)
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: id
-          in: path
-          description: (Required) (ID of the offer)
-          required: true
-          style: simple
-          schema:
-            type: string
-            example: <uuid>
-        - name: x-source
-          in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
-          required: true
-          style: simple
-          schema:
-            type: string
-            example: <string>
-        - name: x-timestamp
-          in: header
-          description: ''
-          style: simple
-          schema:
-            type: string
-            example: <number>
-      responses:
-        '200':
-          description: ''
-          headers: {}
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
   /currencies:
     get:
@@ -557,7 +336,7 @@ paths:
       parameters:
         - name: currency_code
           in: query
-          description: '(Minimum length is 3) (Maximum length is 4) (Code of the currency, passing this will fetch only currencies who has currency_code as the passed value)'
+          description: "(Minimum length is 3) (Maximum length is 4) (Code of the currency, passing this will fetch only currencies who has currency_code as the passed value)"
           style: form
           explode: true
           schema:
@@ -565,7 +344,7 @@ paths:
             example: <string>
         - name: id
           in: query
-          description: '(ID of the currency, passing this will fetch only the currency whose id matches with the supplied id)'
+          description: "(ID of the currency, passing this will fetch only the currency whose id matches with the supplied id)"
           style: form
           explode: true
           schema:
@@ -589,7 +368,7 @@ paths:
             example: <integer>
         - name: sort
           in: query
-          description: ''
+          description: ""
           style: form
           explode: true
           schema:
@@ -597,7 +376,7 @@ paths:
             example: <string>
         - name: sort_op
           in: query
-          description: '(This can only be one of ASC,DESC)'
+          description: "(This can only be one of ASC,DESC)"
           style: form
           explode: true
           schema:
@@ -605,7 +384,7 @@ paths:
             example: <string>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -613,34 +392,34 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-  '/currencies/{id}':
+  "/currencies/{id}":
     get:
       tags:
         - currencies
@@ -666,7 +445,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -674,44 +453,44 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
   /dealrewards:
     post:
       tags:
         - deals
       summary: Create dealreward
-      description: 'This API creates a new scratch card, when you want reward your users with a deal call this API. (A scratch card is a coupon created against a deal) (If user does not exists it will create a new user if email or mobile is passed)'
+      description: "This API creates a new scratch card, when you want reward your users with a deal call this API. (A scratch card is a coupon created against a deal) (If user does not exists it will create a new user if email or mobile is passed)"
       operationId: Createdealreward
       parameters:
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -719,31 +498,31 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
         - name: x-signature
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <string>
       requestBody:
-        description: ''
+        description: ""
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/merchant_create_dealrewards'
+              $ref: "#/components/schemas/merchant_create_dealrewards"
             example:
-              deal_id: '<uuid> (This needs to be deals _id value) (If not passed, deal will be selected automatically)'
-              lead_id: '<uuid> (This needs to be leads _id value) (One of lead_id, email and mobile is required)'
-              email: '<email> (This is email of the user) (One of lead_id, email and mobile is required)'
+              deal_id: "<uuid> (This needs to be deals _id value) (If not passed, deal will be selected automatically)"
+              lead_id: "<uuid> (This needs to be leads _id value) (One of lead_id, email and mobile is required)"
+              email: "<email> (This is email of the user) (One of lead_id, email and mobile is required)"
               mobile:
-                mobile_code: '<string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)'
-                mobile: '<string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)'
+                mobile_code: "<string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)"
+                mobile: "<string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)"
               category_range:
                 - (These are deal categories) (If passed
                 - deal will be selected based on categories passed)
@@ -757,28 +536,28 @@ paths:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-  '/deals/{id}':
+  "/deals/{id}":
     get:
       tags:
         - deals
@@ -807,7 +586,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -815,32 +594,32 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
   /deals:
     get:
@@ -860,7 +639,7 @@ paths:
             example: <string>
         - name: name
           in: query
-          description: '(Name of the deal, passing this fetch only deals where name pattern matches the passed value)'
+          description: "(Name of the deal, passing this fetch only deals where name pattern matches the passed value)"
           style: form
           explode: true
           schema:
@@ -868,7 +647,7 @@ paths:
             example: <string>
         - name: country
           in: query
-          description: '(Name of the country, passing this fetch only deals where country matches the passed value) (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+          description: "(Name of the country, passing this fetch only deals where country matches the passed value) (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
           style: form
           explode: true
           schema:
@@ -884,7 +663,7 @@ paths:
             example: <string>
         - name: type
           in: query
-          description: '(This can only be one of general,private,exclusive, passing this will fetch only deals who has type as the passed value)'
+          description: "(This can only be one of general,private,exclusive, passing this will fetch only deals who has type as the passed value)"
           style: form
           explode: true
           schema:
@@ -892,7 +671,7 @@ paths:
             example: <string>
         - name: provider
           in: query
-          description: '(Identifier source of the deal, passing this will fetch only deals who belongs to the passed provider)'
+          description: "(Identifier source of the deal, passing this will fetch only deals who belongs to the passed provider)"
           style: form
           explode: true
           schema:
@@ -900,7 +679,7 @@ paths:
             example: <string>
         - name: category
           in: query
-          description: '(Category of the deal, passing this will fetch only deals who belongs to the passed category)'
+          description: "(Category of the deal, passing this will fetch only deals who belongs to the passed category)"
           style: form
           explode: true
           schema:
@@ -908,7 +687,7 @@ paths:
             example: <string>
         - name: sub_category
           in: query
-          description: '(Sub-category of the deal, passing this will fetch only deals who belongs to the passed sub_category)'
+          description: "(Sub-category of the deal, passing this will fetch only deals who belongs to the passed sub_category)"
           style: form
           explode: true
           schema:
@@ -916,7 +695,7 @@ paths:
             example: <string>
         - name: id
           in: query
-          description: '(ID of the deal, passing this will fetch only the deal whose id matches with the supplied id)'
+          description: "(ID of the deal, passing this will fetch only the deal whose id matches with the supplied id)"
           style: form
           explode: true
           schema:
@@ -940,7 +719,7 @@ paths:
             example: <integer>
         - name: sort
           in: query
-          description: ''
+          description: ""
           style: form
           explode: true
           schema:
@@ -948,7 +727,7 @@ paths:
             example: <string>
         - name: sort_op
           in: query
-          description: '(This can only be one of ASC,DESC)'
+          description: "(This can only be one of ASC,DESC)"
           style: form
           explode: true
           schema:
@@ -956,7 +735,7 @@ paths:
             example: <string>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -964,34 +743,255 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-  '/leads/{id}':
+  /offers:
+    get:
+      tags:
+        - offers
+      summary: Fetch offers
+      description: This API fetches a list of offers based on filters.
+      operationId: Fetchoffers
+      parameters:
+        - name: parent_id
+          in: query
+          description: "(ID of the parent for which the offer was created, passing this value will fetch only those offers who were created for this parent id)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: parent_type
+          in: query
+          description: "(This can only be one of entities, stores passing this value will fetch only those offers who were created for this parent type)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sku
+          in: query
+          description: (SKU of the offer) (Maximum length is 40)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: name
+          in: query
+          description: "(Name of the offer, passing this fetch only offers where name pattern matches the passed value)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: country
+          in: query
+          description: "(Name of the country, passing this fetch only offers where country matches the passed value) (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: type
+          in: query
+          description: "(This can only be one of general,meet,goodies, passing this will fetch only offers who has type as the passed value)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: provider
+          in: query
+          description: "(Identifier source of the offer, passing this will fetch only offers who belongs to the passed provider)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: category
+          in: query
+          description: "(Category of the offer, passing this will fetch only offers who belongs to the passed category)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sub_category
+          in: query
+          description: "(Sub-category of the offer, passing this will fetch only offers who belongs to the passed sub_category)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: query
+          description: "(ID of the currency, passing this will fetch only the currency whose id matches with the supplied id)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ""
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: "(This can only be one of ASC,DESC)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
+  "/offers/{id}":
+    get:
+      tags:
+        - offers
+      summary: Get offer
+      description: |-
+        This API fetches details of a offer.
+
+        - (Passing id will fetch the details of a offer) - (Passing sku in query param, will requires any valid uuidv4 ID in the path, and fetch the details of a offer by sku)
+      operationId: Getoffer
+      parameters:
+        - name: sku
+          in: query
+          description: (SKU of the offer) (Maximum length is 40)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: path
+          description: (Required) (ID of the offer)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
+  "/leads/{id}":
     put:
       tags:
         - leads
@@ -1009,7 +1009,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1017,24 +1017,24 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
         - name: x-signature
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <string>
       requestBody:
-        description: ''
+        description: ""
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/merchant_update_leads'
+              $ref: "#/components/schemas/merchant_update_leads"
             example:
               email: <email> (This is email of the user)
               mobile:
@@ -1042,31 +1042,31 @@ paths:
                 mobile: <string> (This is mobile number of the user between 4 to 12 digit chars )
               name: <string> (This is name of this user)
               dob: <string> (This is date of birth in the iso format of this user)
-              country: '<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+              country: "<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
               merchant_trace:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
     get:
       tags:
@@ -1080,7 +1080,7 @@ paths:
       parameters:
         - name: mobile
           in: query
-          description: '(Mobile of the lead, Passing this requires any valid uuidv4 in the path)'
+          description: "(Mobile of the lead, Passing this requires any valid uuidv4 in the path)"
           style: form
           explode: true
           schema:
@@ -1088,7 +1088,7 @@ paths:
             example: <string>
         - name: email
           in: query
-          description: '(Email of the lead, Passing this requires any valid uuidv4 in the path)'
+          description: "(Email of the lead, Passing this requires any valid uuidv4 in the path)"
           style: form
           explode: true
           schema:
@@ -1096,7 +1096,7 @@ paths:
             example: <email>
         - name: destination_swap_id
           in: query
-          description: '(Swap contract between two merchant platform, Passing this will fetch lead details of a merchant who is in strategic partnership with this merchant)'
+          description: "(Swap contract between two merchant platform, Passing this will fetch lead details of a merchant who is in strategic partnership with this merchant)"
           style: form
           explode: true
           schema:
@@ -1104,7 +1104,7 @@ paths:
             example: <uuid>
         - name: id
           in: path
-          description: '(Required) (ID of the lead, This can be any valid uuidv4 value if email or mobile query param is passed)'
+          description: "(Required) (ID of the lead, This can be any valid uuidv4 value if email or mobile query param is passed)"
           required: true
           style: simple
           schema:
@@ -1112,7 +1112,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1120,32 +1120,32 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
   /leads:
     post:
@@ -1157,7 +1157,7 @@ paths:
       parameters:
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1165,24 +1165,24 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
         - name: x-signature
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <string>
       requestBody:
-        description: ''
+        description: ""
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/merchant_create_leads'
+              $ref: "#/components/schemas/merchant_create_leads"
             example:
               customer_id: <string> (Required) (Minimum length is 4) (Maximum length is 64) (This needs to be your systems customer_id valye of this user)
               email: <email> (This is email of the user)
@@ -1191,32 +1191,32 @@ paths:
                 mobile: <string> (This is mobile number of the user between 4 to 12 digit chars )
               name: <string> (This is name of this user)
               dob: <string> (This is date of birth in the iso format of this user)
-              country: '<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+              country: "<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
               currency_id: <uuid> (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
               merchant_trace:
                 nykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
   /reviews:
     post:
@@ -1228,7 +1228,7 @@ paths:
       parameters:
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1236,24 +1236,24 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
         - name: x-signature
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <string>
       requestBody:
-        description: ''
+        description: ""
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/merchant_create_reviews'
+              $ref: "#/components/schemas/merchant_create_reviews"
             example:
               lead_id: <uuid> (Required) (This needs to be leads _id value)
               parent_id: <uuid> (Required) (This needs to be parent_type's _id value)
@@ -1264,26 +1264,26 @@ paths:
               remarks: <string>
         required: true
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
     get:
       tags:
@@ -1294,7 +1294,7 @@ paths:
       parameters:
         - name: lead_id
           in: query
-          description: '(ID of the lead, passing this value will fetch only those reviews who were created by this lead)'
+          description: "(ID of the lead, passing this value will fetch only those reviews who were created by this lead)"
           required: true
           style: form
           explode: true
@@ -1303,7 +1303,7 @@ paths:
             example: <uuid>
         - name: parent_id
           in: query
-          description: '(ID of the parent for which the review was created, passing this value will fetch only those reviews who were created for this parent id)'
+          description: "(ID of the parent for which the review was created, passing this value will fetch only those reviews who were created for this parent id)"
           style: form
           explode: true
           schema:
@@ -1311,7 +1311,7 @@ paths:
             example: <uuid>
         - name: parent_type
           in: query
-          description: '(This can only be one of deals, passing this value will fetch only those reviews who were created for this parent type)'
+          description: "(This can only be one of deals, passing this value will fetch only those reviews who were created for this parent type)"
           style: form
           explode: true
           schema:
@@ -1319,7 +1319,7 @@ paths:
             example: <string>
         - name: id
           in: query
-          description: '(ID of the review, passing this will fetch only the reviews whose id matches with the supplied id)'
+          description: "(ID of the review, passing this will fetch only the reviews whose id matches with the supplied id)"
           style: form
           explode: true
           schema:
@@ -1343,7 +1343,7 @@ paths:
             example: <integer>
         - name: sort
           in: query
-          description: ''
+          description: ""
           style: form
           explode: true
           schema:
@@ -1351,7 +1351,7 @@ paths:
             example: <string>
         - name: sort_op
           in: query
-          description: '(This can only be one of ASC,DESC)'
+          description: "(This can only be one of ASC,DESC)"
           style: form
           explode: true
           schema:
@@ -1359,7 +1359,7 @@ paths:
             example: <string>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1367,34 +1367,34 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-  '/reviews/{id}':
+  "/reviews/{id}":
     get:
       tags:
         - reviews
@@ -1412,7 +1412,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1420,32 +1420,32 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
     put:
       tags:
@@ -1464,7 +1464,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1472,24 +1472,24 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
         - name: x-signature
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <string>
       requestBody:
-        description: ''
+        description: ""
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/merchant_update_reviews'
+              $ref: "#/components/schemas/merchant_update_reviews"
             example:
               title: <string>
               description: <string>
@@ -1497,26 +1497,26 @@ paths:
               remarks: <string>
         required: true
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
     delete:
       tags:
@@ -1535,7 +1535,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1543,34 +1543,34 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-  '/notifications/{id}':
+  "/notifications/{id}":
     get:
       tags:
         - notifications
@@ -1588,7 +1588,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1596,32 +1596,32 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
   /notifications:
     get:
@@ -1633,7 +1633,7 @@ paths:
       parameters:
         - name: lead_id
           in: query
-          description: '(Required) (ID of the lead, passing this will fetch only leads who belongs to the lead)'
+          description: "(Required) (ID of the lead, passing this will fetch only leads who belongs to the lead)"
           required: true
           style: form
           explode: true
@@ -1642,7 +1642,7 @@ paths:
             example: <uuid>
         - name: parent_id
           in: query
-          description: '(ID of the parent, passing this will fetch only notifications who belongs to the parent id)'
+          description: "(ID of the parent, passing this will fetch only notifications who belongs to the parent id)"
           style: form
           explode: true
           schema:
@@ -1650,7 +1650,7 @@ paths:
             example: <uuid>
         - name: parent_type
           in: query
-          description: '(This can only be one of admins,entities, passing this value will fetch only notifications who were created for this parent type)'
+          description: "(This can only be one of admins,entities, passing this value will fetch only notifications who were created for this parent type)"
           style: form
           explode: true
           schema:
@@ -1658,7 +1658,7 @@ paths:
             example: <string>
         - name: event
           in: query
-          description: '(Event of the notification, passing this will fetch only notifications having the passing event value)'
+          description: "(Event of the notification, passing this will fetch only notifications having the passing event value)"
           style: form
           explode: true
           schema:
@@ -1666,7 +1666,7 @@ paths:
             example: <string>
         - name: id
           in: query
-          description: '(ID of the notification, passing this will fetch only the notification whose id matches with the supplied id)'
+          description: "(ID of the notification, passing this will fetch only the notification whose id matches with the supplied id)"
           style: form
           explode: true
           schema:
@@ -1690,7 +1690,7 @@ paths:
             example: <integer>
         - name: sort
           in: query
-          description: ''
+          description: ""
           style: form
           explode: true
           schema:
@@ -1698,7 +1698,7 @@ paths:
             example: <string>
         - name: sort_op
           in: query
-          description: '(This can only be one of ASC,DESC)'
+          description: "(This can only be one of ASC,DESC)"
           style: form
           explode: true
           schema:
@@ -1706,7 +1706,7 @@ paths:
             example: <string>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1714,32 +1714,32 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
   /swaps:
     post:
@@ -1751,7 +1751,7 @@ paths:
       parameters:
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1759,24 +1759,24 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
         - name: x-signature
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <string>
       requestBody:
-        description: ''
+        description: ""
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/merchant_create_swaps'
+              $ref: "#/components/schemas/merchant_create_swaps"
             example:
               swap_id: <uuid> (Required) (This needs to be swaps _id value)
               source_lead_id: <uuid> (Required) (This needs to be your leads _id value)
@@ -1786,26 +1786,26 @@ paths:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
     get:
       tags:
@@ -1824,7 +1824,7 @@ paths:
             example: <string>
         - name: swap_id
           in: query
-          description: '(ID of the connecting swap, passing this will fetch only swaps who has connecting swap id as passed value)'
+          description: "(ID of the connecting swap, passing this will fetch only swaps who has connecting swap id as passed value)"
           style: form
           explode: true
           schema:
@@ -1832,7 +1832,7 @@ paths:
             example: <uuid>
         - name: currency_id
           in: query
-          description: '(ID of the currency, passing this will fetch only swap who has currency as passed value)'
+          description: "(ID of the currency, passing this will fetch only swap who has currency as passed value)"
           style: form
           explode: true
           schema:
@@ -1848,7 +1848,7 @@ paths:
             example: <boolean>
         - name: id
           in: query
-          description: '(ID of the swap, passing this will fetch only the swap whose id matches with the supplied id)'
+          description: "(ID of the swap, passing this will fetch only the swap whose id matches with the supplied id)"
           style: form
           explode: true
           schema:
@@ -1872,7 +1872,7 @@ paths:
             example: <integer>
         - name: sort
           in: query
-          description: ''
+          description: ""
           style: form
           explode: true
           schema:
@@ -1880,7 +1880,7 @@ paths:
             example: <string>
         - name: sort_op
           in: query
-          description: '(This can only be one of ASC,DESC)'
+          description: "(This can only be one of ASC,DESC)"
           style: form
           explode: true
           schema:
@@ -1888,7 +1888,7 @@ paths:
             example: <string>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1896,34 +1896,34 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-  '/swaps/{id}':
+  "/swaps/{id}":
     get:
       tags:
         - swaps
@@ -1952,7 +1952,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -1960,32 +1960,32 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
   /tasks:
     get:
@@ -2005,7 +2005,7 @@ paths:
             example: <string>
         - name: name
           in: query
-          description: '(Name of the task, passing this fetch only tasks where name pattern matches the passed value)'
+          description: "(Name of the task, passing this fetch only tasks where name pattern matches the passed value)"
           style: form
           explode: true
           schema:
@@ -2013,7 +2013,7 @@ paths:
             example: <string>
         - name: country
           in: query
-          description: '(Name of the country, passing this fetch only deals where country matches the passed value) (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+          description: "(Name of the country, passing this fetch only deals where country matches the passed value) (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
           style: form
           explode: true
           schema:
@@ -2021,7 +2021,7 @@ paths:
             example: <string>
         - name: category
           in: query
-          description: '(Category of the task, passing this fetch only tasks where category is passed value)'
+          description: "(Category of the task, passing this fetch only tasks where category is passed value)"
           style: form
           explode: true
           schema:
@@ -2029,7 +2029,7 @@ paths:
             example: <string>
         - name: sub_category
           in: query
-          description: '(Sub-category of the task, passing this fetch only tasks where sub-category is passed value)'
+          description: "(Sub-category of the task, passing this fetch only tasks where sub-category is passed value)"
           style: form
           explode: true
           schema:
@@ -2037,7 +2037,7 @@ paths:
             example: <string>
         - name: id
           in: query
-          description: '(ID of the task, passing this will fetch only the task whose id matches with the supplied id)'
+          description: "(ID of the task, passing this will fetch only the task whose id matches with the supplied id)"
           style: form
           explode: true
           schema:
@@ -2061,7 +2061,7 @@ paths:
             example: <integer>
         - name: sort
           in: query
-          description: ''
+          description: ""
           style: form
           explode: true
           schema:
@@ -2069,7 +2069,7 @@ paths:
             example: <string>
         - name: sort_op
           in: query
-          description: '(This can only be one of ASC,DESC)'
+          description: "(This can only be one of ASC,DESC)"
           style: form
           explode: true
           schema:
@@ -2077,7 +2077,7 @@ paths:
             example: <string>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -2085,34 +2085,34 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-  '/tasks/{id}':
+  "/tasks/{id}":
     get:
       tags:
         - tasks
@@ -2141,7 +2141,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -2149,34 +2149,34 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-  '/taskactivities/{id}':
+  "/taskactivities/{id}":
     get:
       tags:
         - taskactivities
@@ -2194,7 +2194,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -2202,44 +2202,44 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
   /taskactivities:
     post:
       tags:
         - taskactivities
       summary: Create task activity
-      description: 'This API creates a new task activity, when you have created a task like make 3 payments to get rewarded, you shall notify us for each payment and we will create a activity at our side. Once there are 3 activities by a user we will automatically reward that user. (A task activity is created against a task)'
+      description: "This API creates a new task activity, when you have created a task like make 3 payments to get rewarded, you shall notify us for each payment and we will create a activity at our side. Once there are 3 activities by a user we will automatically reward that user. (A task activity is created against a task)"
       operationId: Createtaskactivity
       parameters:
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -2247,24 +2247,24 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
         - name: x-signature
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <string>
       requestBody:
-        description: ''
+        description: ""
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/merchant_create_taskactivities'
+              $ref: "#/components/schemas/merchant_create_taskactivities"
             example:
               lead_id: <uuid> (Required) (This needs to be leads _id value)
               task_id: <uuid> (Required) (This needs to be tasks _id value)
@@ -2272,26 +2272,26 @@ paths:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
     get:
       tags:
@@ -2311,7 +2311,7 @@ paths:
             example: <uuid>
         - name: task_id
           in: query
-          description: '(ID of the task, passing this value will fetch only those task activities who were created for this task)'
+          description: "(ID of the task, passing this value will fetch only those task activities who were created for this task)"
           style: form
           explode: true
           schema:
@@ -2319,7 +2319,7 @@ paths:
             example: <uuid>
         - name: id
           in: query
-          description: '(ID of the task activity, passing this will fetch only the task activity whose id matches with the supplied id)'
+          description: "(ID of the task activity, passing this will fetch only the task activity whose id matches with the supplied id)"
           style: form
           explode: true
           schema:
@@ -2343,7 +2343,7 @@ paths:
             example: <integer>
         - name: sort
           in: query
-          description: ''
+          description: ""
           style: form
           explode: true
           schema:
@@ -2352,7 +2352,7 @@ paths:
             example: <string>
         - name: sort_op
           in: query
-          description: '(This can only be one of ASC,DESC)'
+          description: "(This can only be one of ASC,DESC)"
           style: form
           explode: true
           schema:
@@ -2361,7 +2361,7 @@ paths:
             example: <string>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -2369,32 +2369,32 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
   /wallets:
     post:
@@ -2406,7 +2406,7 @@ paths:
       parameters:
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -2414,24 +2414,24 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
         - name: x-signature
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <string>
       requestBody:
-        description: ''
+        description: ""
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/merchant_create_wallets'
+              $ref: "#/components/schemas/merchant_create_wallets"
             example:
               lead_id: <uuid> (Required) (This needs to be leads _id value)
               currency_id: <uuid> (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
@@ -2439,26 +2439,26 @@ paths:
               reserve: <number> (Minimum is 0)
         required: true
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
     get:
       tags:
@@ -2478,7 +2478,7 @@ paths:
             example: <uuid>
         - name: currency_id
           in: query
-          description: '(ID of the currency, passing this will fetch only wallets who belongs to the passed wallet id)'
+          description: "(ID of the currency, passing this will fetch only wallets who belongs to the passed wallet id)"
           style: form
           explode: true
           schema:
@@ -2486,7 +2486,7 @@ paths:
             example: <uuid>
         - name: id
           in: query
-          description: '(ID of the wallet, passing this will fetch only the wallet whose id matches with the supplied id)'
+          description: "(ID of the wallet, passing this will fetch only the wallet whose id matches with the supplied id)"
           style: form
           explode: true
           schema:
@@ -2510,7 +2510,7 @@ paths:
             example: <integer>
         - name: sort
           in: query
-          description: ''
+          description: ""
           style: form
           explode: true
           schema:
@@ -2518,7 +2518,7 @@ paths:
             example: <string>
         - name: sort_op
           in: query
-          description: '(This can only be one of ASC,DESC)'
+          description: "(This can only be one of ASC,DESC)"
           style: form
           explode: true
           schema:
@@ -2526,7 +2526,7 @@ paths:
             example: <string>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -2534,34 +2534,34 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-  '/wallets/{id}':
+  "/wallets/{id}":
     get:
       tags:
         - wallets
@@ -2579,7 +2579,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -2587,32 +2587,32 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
   /wallettransactions:
     get:
@@ -2633,7 +2633,7 @@ paths:
             example: <uuid>
         - name: wallet_id
           in: query
-          description: '(ID of the wallet, passing this value will fetch only those wallet transactions who were created for this wallet)'
+          description: "(ID of the wallet, passing this value will fetch only those wallet transactions who were created for this wallet)"
           style: form
           explode: true
           schema:
@@ -2641,7 +2641,7 @@ paths:
             example: <uuid>
         - name: parent_id
           in: query
-          description: '(ID of the parent for which the wallet transaction was created, passing this value will fetch only those wallet transactions who were created for this parent id)'
+          description: "(ID of the parent for which the wallet transaction was created, passing this value will fetch only those wallet transactions who were created for this parent id)"
           style: form
           explode: true
           schema:
@@ -2649,7 +2649,7 @@ paths:
             example: <uuid>
         - name: parent_type
           in: query
-          description: '(This can only be one of swaps,coupons,task activities, passing this value will fetch only those wallet transactions who were created for this parent type)'
+          description: "(This can only be one of swaps,coupons,task activities, passing this value will fetch only those wallet transactions who were created for this parent type)"
           style: form
           explode: true
           schema:
@@ -2657,7 +2657,7 @@ paths:
             example: <string>
         - name: id
           in: query
-          description: '(ID of the wallet transaction, passing this will fetch only the wallet transaction whose id matches with the supplied id)'
+          description: "(ID of the wallet transaction, passing this will fetch only the wallet transaction whose id matches with the supplied id)"
           style: form
           explode: true
           schema:
@@ -2681,7 +2681,7 @@ paths:
             example: <integer>
         - name: sort
           in: query
-          description: ''
+          description: ""
           style: form
           explode: true
           schema:
@@ -2689,7 +2689,7 @@ paths:
             example: <string>
         - name: sort_op
           in: query
-          description: '(This can only be one of ASC,DESC)'
+          description: "(This can only be one of ASC,DESC)"
           style: form
           explode: true
           schema:
@@ -2697,7 +2697,7 @@ paths:
             example: <string>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -2705,43 +2705,43 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
     post:
       tags:
         - wallettransactions
       summary: Create wallet transaction
-      description: 'This API creates a new wallet transaction. If you want to reward your user with wallet points create a wallet transaction of type reward, or if you want to deduct or adjust wallet points create a wallet transaction of type adjust. When user redeem deals using wallet points a wallet transaction of type redeem is created automatically. (A wallet transaction is created against a wallet)'
+      description: "This API creates a new wallet transaction. If you want to reward your user with wallet points create a wallet transaction of type reward, or if you want to deduct or adjust wallet points create a wallet transaction of type adjust. When user redeem deals using wallet points a wallet transaction of type redeem is created automatically. (A wallet transaction is created against a wallet)"
       operationId: Createwallettransaction
       parameters:
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -2749,58 +2749,58 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
         - name: x-signature
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <string>
       requestBody:
-        description: ''
+        description: ""
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/merchant_create_wallettransactions'
+              $ref: "#/components/schemas/merchant_create_wallettransactions"
             example:
               wallet_id: <uuid> (Required) (This needs to be wallets _id value)
               amount: <number> (Required) (Minimum is 0)
               hash: <string> (Required) (Unique transaction hash value)
-              operation: '<string> (Required) (This can only be one of cr,dr)'
-              type: '<string> (This can only be one of reward,adjust)'
+              operation: "<string> (Required) (This can only be one of cr,dr)"
+              type: "<string> (This can only be one of reward,adjust)"
               status: <string> (This can only be one of success)
               remarks: <string>
               merchant_trace:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-  '/wallettransactions/{id}':
+  "/wallettransactions/{id}":
     get:
       tags:
         - wallettransactions
@@ -2818,7 +2818,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -2826,32 +2826,32 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
     put:
       tags:
@@ -2870,7 +2870,7 @@ paths:
             example: <uuid>
         - name: x-source
           in: header
-          description: '(Required)  (This can only be one of mobile,unix,web)'
+          description: "(Required)  (This can only be one of mobile,unix,web)"
           required: true
           style: simple
           schema:
@@ -2878,24 +2878,24 @@ paths:
             example: <string>
         - name: x-timestamp
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <number>
         - name: x-signature
           in: header
-          description: ''
+          description: ""
           style: simple
           schema:
             type: string
             example: <string>
       requestBody:
-        description: ''
+        description: ""
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/merchant_update_wallettransactions'
+              $ref: "#/components/schemas/merchant_update_wallettransactions"
             example:
               status: <email> (This is email of the user)
               remarks: <string>
@@ -2903,26 +2903,26 @@ paths:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
-        '200':
-          description: ''
+        "200":
+          description: ""
           headers: {}
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/success'
-              
-        '422':
-          description: ''
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/error'
-              
+                $ref: "#/components/schemas/error"
+
       deprecated: false
       servers:
-        - url: 'https://platform.nector.io/api/v2/merchant'
+        - url: "https://platform.nector.io/api/v2/merchant"
           variables: {}
-        - url: 'https://devplatform.nector.io/api/v2/merchant'
+        - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
 components:
   schemas:
@@ -3043,31 +3043,31 @@ components:
           description: (This needs to be deals _id value)
         lead_id:
           type: string
-          description: '(This needs to be leads _id value) (One of lead_id, email and mobile is required)'
+          description: "(This needs to be leads _id value) (One of lead_id, email and mobile is required)"
         email:
           type: string
-          description: '(This is email of the user) (One of lead_id, email and mobile is required)'
+          description: "(This is email of the user) (One of lead_id, email and mobile is required)"
         mobile:
-          $ref: '#/components/schemas/lead_mobile'
+          $ref: "#/components/schemas/lead_mobile"
         category_range:
           type: array
-          description: '(These are deal categories) (If passed, deal will be selected based on categories passed)'
+          description: "(These are deal categories) (If passed, deal will be selected based on categories passed)"
         country_range:
           type: array
-          description: '(These are deal countries) (If passed, deal will be selected based on countries passed)'
+          description: "(These are deal countries) (If passed, deal will be selected based on countries passed)"
         price_range:
           type: object
-          description: '(This is deal sell price range in nector coin) (If not passed, deal will be selected between min and max sell price)'
+          description: "(This is deal sell price range in nector coin) (If not passed, deal will be selected between min and max sell price)"
         merchant_trace:
           type: object
           description: (Pass anything that needs to deligated to API webhook)
       example:
-        deal_id: '<uuid> (This needs to be deals _id value) (If not passed, deal will be selected automatically)'
-        lead_id: '<uuid> (This needs to be leads _id value) (One of lead_id, email and mobile is required)'
-        email: '<email> (This is email of the user) (One of lead_id, email and mobile is required)'
+        deal_id: "<uuid> (This needs to be deals _id value) (If not passed, deal will be selected automatically)"
+        lead_id: "<uuid> (This needs to be leads _id value) (One of lead_id, email and mobile is required)"
+        email: "<email> (This is email of the user) (One of lead_id, email and mobile is required)"
         mobile:
-          mobile_code: '<string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)'
-          mobile: '<string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)'
+          mobile_code: "<string> (This can be one of supported mobile codes) (One of lead_id, email and mobile is required)"
+          mobile: "<string> (This is mobile number of the user between 4 to 12 digit chars ) (One of lead_id, email and mobile is required)"
         category_range:
           - (These are deal categories) (If passed
           - deal will be selected based on categories passed)
@@ -3087,7 +3087,7 @@ components:
           type: string
           description: (This is email of the user)
         mobile:
-          $ref: '#/components/schemas/lead_mobile'
+          $ref: "#/components/schemas/lead_mobile"
         name:
           type: string
           description: (This is name of this user)
@@ -3096,7 +3096,7 @@ components:
           description: (This is date of birth in the iso format of this user)
         country:
           type: string
-          description: '(This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+          description: "(This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
         merchant_trace:
           type: object
           description: (Pass anything that needs to deligated to API webhook)
@@ -3107,7 +3107,7 @@ components:
           mobile: <string> (This is mobile number of the user between 4 to 12 digit chars )
         name: <string> (This is name of this user)
         dob: <string> (This is date of birth in the iso format of this user)
-        country: '<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+        country: "<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
         merchant_trace:
           anykey: <string> (Pass anything that needs to deligated to API webhook)
     merchant_create_wallettransactions:
@@ -3130,10 +3130,10 @@ components:
           description: (Required) (Unique transaction hash value)
         operation:
           type: string
-          description: '(Required) (This can only be one of cr,dr)'
+          description: "(Required) (This can only be one of cr,dr)"
         type:
           type: string
-          description: '<string> (This can only be one of reward,adjust)'
+          description: "<string> (This can only be one of reward,adjust)"
         status:
           type: string
           description: (This can only be one of success)
@@ -3146,8 +3146,8 @@ components:
         wallet_id: <uuid> (Required) (This needs to be wallets _id value)
         amount: <number> (Required) (Minimum is 0)
         hash: <string> (Required) (Unique transaction hash value)
-        operation: '<string> (Required) (This can only be one of cr,dr)'
-        type: '<string> (This can only be one of reward,adjust)'
+        operation: "<string> (Required) (This can only be one of cr,dr)"
+        type: "<string> (This can only be one of reward,adjust)"
         status: <string> (This can only be one of success)
         remarks: <string>
         merchant_trace:
@@ -3186,7 +3186,7 @@ components:
           type: string
           description: (This is email of the user or dummy email like customer_id@merchant.com)
         mobile:
-          $ref: '#/components/schemas/lead_mobile'
+          $ref: "#/components/schemas/lead_mobile"
         name:
           type: string
           description: (This is name of this user)
@@ -3195,7 +3195,7 @@ components:
           description: (This is date of birth in the iso format of this user)
         country:
           type: string
-          description: '(This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+          description: "(This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
         currency_id:
           type: string
           description: (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
@@ -3210,7 +3210,7 @@ components:
           mobile: <string> (This is mobile number of the user or dummy mobile number between 4 to 12 digit chars )
         name: <string> (This is name of this user)
         dob: <string> (This is date of birth in the iso format of this user)
-        country: '<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)'
+        country: "<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
         currency_id: <uuid> (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
         merchant_trace:
           anykey: <string> (Pass anything that needs to deligated to API webhook)
@@ -3246,14 +3246,14 @@ components:
       properties:
         mobile_code:
           type: string
-          description: '(Required) (This can be only one of 61,880,55,1,33,49,852,91,972,39,82,52,64,92,63,65,27,66,971,44,1)'
+          description: "(Required) (This can be only one of 61,880,55,1,33,49,852,91,972,39,82,52,64,92,63,65,27,66,971,44,1)"
         mobile:
           type: string
           description: (Required) (Minimum length is 4) (Maximum length is 12)
       example:
-        mobile_code: '<string> (Required) (This can be only one of 61,880,55,1,33,49,852,91,972,39,82,52,64,92,63,65,27,66,971,44,1)'
+        mobile_code: "<string> (Required) (This can be only one of 61,880,55,1,33,49,852,91,972,39,82,52,64,92,63,65,27,66,971,44,1)"
         mobile: <string> (Required) (Minimum length is 4) (Maximum length is 12)
-      description: ''
+      description: ""
     merchant_create_swaps:
       title: merchant_create_swaps
       required:

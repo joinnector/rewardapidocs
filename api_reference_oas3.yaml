@@ -991,6 +991,362 @@ paths:
           variables: {}
         - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
+  /stores:
+    get:
+      tags:
+        - stores
+      summary: Fetch stores
+      description: This API fetches a list of stores based on filters.
+      operationId: Fetchstores
+      parameters:
+        - name: sku
+          in: query
+          description: (SKU of the store) (Maximum length is 40)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: name
+          in: query
+          description: "(Name of the store, passing this fetch only stores where name pattern matches the passed value)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: country
+          in: query
+          description: "(Name of the country, passing this fetch only stores where country matches the passed value) (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: category
+          in: query
+          description: "(Category of the store, passing this will fetch only stores who belongs to the passed category)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sub_category
+          in: query
+          description: "(Sub-category of the store, passing this will fetch only stores who belongs to the passed sub_category)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: query
+          description: "(ID of the currency, passing this will fetch only the currency whose id matches with the supplied id)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ""
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: "(This can only be one of ASC,DESC)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
+  "/stores/{id}":
+    get:
+      tags:
+        - stores
+      summary: Get store
+      description: |-
+        This API fetches details of a store.
+
+        - (Passing id will fetch the details of a store) - (Passing sku in query param, will requires any valid uuidv4 ID in the path, and fetch the details of a store by sku)
+      operationId: Getstore
+      parameters:
+        - name: sku
+          in: query
+          description: (SKU of the store) (Maximum length is 40)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: path
+          description: (Required) (ID of the store)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
+
+  /surprises:
+    get:
+      tags:
+        - surprises
+      summary: Fetch surprises
+      description: This API fetches a list of surprises based on filters.
+      operationId: Fetchsurprises
+      parameters:
+        - name: sku
+          in: query
+          description: (SKU of the surprise) (Maximum length is 40)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: name
+          in: query
+          description: "(Name of the surprise, passing this fetch only surprises where name pattern matches the passed value)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: query
+          description: "(ID of the surprise, passing this will fetch only the surprise whose id matches with the supplied id)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ""
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: "(This can only be one of ASC,DESC)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
+  "/surprises/{id}":
+    get:
+      tags:
+        - surprises
+      summary: Get surprise
+      description: |-
+        This API fetches details of a surprise.
+
+        - (Passing id will fetch the details of a surprise) - (Passing sku in query param, will requires any valid uuidv4 ID in the path, and fetch the details of a surprise)
+      operationId: Getsurprise
+      parameters:
+        - name: sku
+          in: query
+          description: (SKU of the surprise) (Maximum length is 40)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: path
+          description: (Required) (ID of the surprise)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
+
   "/leads/{id}":
     put:
       tags:
@@ -3312,6 +3668,8 @@ tags:
   - name: subscriptions
   - name: coupons
   - name: offers
+  - name: stores
+  - name: surprises
   - name: currencies
   - name: deals
   - name: leads

@@ -326,6 +326,231 @@ paths:
           variables: {}
         - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
+  "/vouchers/{id}":
+    get:
+      tags:
+        - vouchers
+      summary: Get voucher
+      description: This API fetches details of a voucher.
+      operationId: Getvoucher
+      parameters:
+        - name: id
+          in: path
+          description: (Required)  (ID of the voucher)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
+  /vouchers:
+    post:
+      tags:
+        - vouchers
+      summary: Create voucher
+      description: This API creates a new voucher when you reward them with meetups or goodies (offers). (A voucher is created against an offers)
+      operationId: Createvoucher
+      parameters:
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/merchant_create_vouchers"
+            example:
+              lead_id: <uuid> (Required) (This needs to be leads _id value)
+              parent_id: <uuid> (Required) (This needs to be parent_type's _id value)
+              parent_type: <string> (Required) (This can only be one of offers)
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
+    get:
+      tags:
+        - vouchers
+      summary: Fetch vouchers
+      description: This API fetches a list of vouchers based on filters.
+      operationId: Fetchvouchers
+      parameters:
+        - name: lead_id
+          in: query
+          description: (Required) (ID of the lead)
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: parent_id
+          in: query
+          description: "(ID of the parent for which the voucher was created, passing this value will fetch only those vouchers who were created for this parent id)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: parent_type
+          in: query
+          description: "(This can only be one of offers, passing this value will fetch only those vouchers who were created for this parent type)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: id
+          in: query
+          description: "(ID of the voucher, passing this will fetch only the voucher whose id matches with the supplied id)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ""
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: sort_op
+          in: query
+          description: "(This can only be one of ASC,DESC)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
   /currencies:
     get:
       tags:
@@ -2585,6 +2810,227 @@ paths:
           variables: {}
         - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
+  /surpriseactivities:
+    post:
+      tags:
+        - surpriseactivities
+      summary: Create surprise activity
+      description: "This API creates a new surprise activity, when you have created a surprise like get rewarded on your birthday, Once your customers clicks on reward me, we will automatically reward that user. (A surprise activity is created against a surprise)"
+      operationId: Createsurpriseactivity
+      parameters:
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/merchant_create_surpriseactivities"
+            example:
+              lead_id: <uuid> (Required) (This needs to be leads _id value)
+              surprise_id: <uuid> (Required) (This needs to be surprises _id value)
+              merchant_trace:
+                anykey: <string> (Pass anything that needs to deligated to API webhook)
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
+    get:
+      tags:
+        - surpriseactivities
+      summary: Fetch surprise activities
+      description: This API fetches a list of surprise activities based on filters.
+      operationId: Fetchsurpriseactivities
+      parameters:
+        - name: lead_id
+          in: query
+          description: (Required) (ID of the lead)
+          required: true
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: surprise_id
+          in: query
+          description: "(ID of the surprise, passing this value will fetch only those surprise activities who were created for this surprise)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: id
+          in: query
+          description: "(ID of the surprise activity, passing this will fetch only the surprise activity whose id matches with the supplied id)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <uuid>
+        - name: page
+          in: query
+          description: (Minimum is 1)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: limit
+          in: query
+          description: (Minimum is 1) (Maximum is 1000)
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <integer>
+        - name: sort
+          in: query
+          description: ""
+          style: form
+          explode: true
+          schema:
+            type: string
+            default: created_at
+            example: <string>
+        - name: sort_op
+          in: query
+          description: "(This can only be one of ASC,DESC)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            default: DESC
+            example: <string>
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
+
+  "/surpriseactivities/{id}":
+    get:
+      tags:
+        - surpriseactivities
+      summary: Get surprise activity
+      description: This API fetches details of a surprise activity.
+      operationId: Getsurpriseactivity
+      parameters:
+        - name: id
+          in: path
+          description: (Required) (ID of the surprise activity)
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <uuid>
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          required: true
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
   /taskactivities:
     post:
       tags:
@@ -2752,6 +3198,7 @@ paths:
           variables: {}
         - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
+
   /wallets:
     post:
       tags:
@@ -3390,6 +3837,27 @@ components:
         task_id: <uuid> (Required) (This needs to be tasks _id value)
         merchant_trace:
           anykey: <string> (Pass anything that needs to deligated to API webhook)
+    merchant_create_surpriseactivities:
+      title: merchant_create_surpriseactivities
+      required:
+        - lead_id
+        - surprise_id
+      type: object
+      properties:
+        lead_id:
+          type: string
+          description: (Required) (This needs to be leads _id value)
+        surprise_id:
+          type: string
+          description: (Required) (This needs to be surprises _id value)
+        merchant_trace:
+          type: object
+          description: (Pass anything that needs to deligated to API webhook)
+      example:
+        lead_id: <uuid> (Required) (This needs to be leads _id value)
+        surprise_id: <uuid> (Required) (This needs to be surprises _id value)
+        merchant_trace:
+          anykey: <string> (Pass anything that needs to deligated to API webhook)
     merchant_create_dealrewards:
       title: merchant_create_dealrewards
       type: object
@@ -3529,6 +3997,27 @@ components:
         lead_id: <uuid> (Required) (This needs to be leads _id value)
         deal_id: <uuid> (Required) (This needs to be deals _id value)
         currency_id: <uuid> (Required) (This needs to be currencies _id value)
+    merchant_create_vouchers:
+      title: merchant_create_vouchers
+      required:
+        - lead_id
+        - parent_id
+        - parent_type
+      type: object
+      properties:
+        lead_id:
+          type: string
+          description: (Required) (This needs to be leads _id value)
+        parent_id:
+          type: string
+          description: (Required) (This needs to be parent_type's _id value)
+        parent_type:
+          type: string
+          description: (Required) (This can only be one of offers)
+      example:
+        lead_id: <uuid> (Required) (This needs to be leads _id value)
+        parent_id: <uuid> (Required) (This needs to be parent_type's _id value)
+        parent_type: <string> (Required) (This can only be one of offers)
     merchant_create_leads:
       title: merchant_create_leads
       required:
@@ -3667,9 +4156,11 @@ security:
 tags:
   - name: subscriptions
   - name: coupons
+  - name: vouchers
   - name: offers
   - name: stores
   - name: surprises
+  - name: surpriseactivities
   - name: currencies
   - name: deals
   - name: leads

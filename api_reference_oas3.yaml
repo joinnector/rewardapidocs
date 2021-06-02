@@ -3573,7 +3573,7 @@ paths:
             example:
               wallet_id: <uuid> (Required) (This needs to be wallets _id value)
               amount: <number> (Required) (Minimum is 0)
-              hash: <string> (Required) (Unique transaction hash value)
+              hash: <string> (Required) (Minimum length is 4) (Maximum length is 64) (Unique transaction hash value, generate using purpose + user identifier as a seed to avoid duplicate rewards)
               operation: "<string> (Required) (This can only be one of cr,dr)"
               type: "<string> (This can only be one of reward,adjust)"
               status: <string> (This can only be one of success)
@@ -3951,7 +3951,7 @@ components:
           description: (Required) (Minimum is 0)
         hash:
           type: string
-          description: (Required) (Unique transaction hash value)
+          description: (Required) (Minimum length is 4) (Maximum length is 64) (Unique transaction hash value, generate using purpose + user identifier as a seed to avoid duplicate rewards)
         operation:
           type: string
           description: "(Required) (This can only be one of cr,dr)"
@@ -3969,7 +3969,7 @@ components:
       example:
         wallet_id: <uuid> (Required) (This needs to be wallets _id value)
         amount: <number> (Required) (Minimum is 0)
-        hash: <string> (Required) (Unique transaction hash value)
+        hash: <string> (Required) (Minimum length is 4) (Maximum length is 64) (Unique transaction hash value, generate using purpose + user identifier as a seed to avoid duplicate rewards)
         operation: "<string> (Required) (This can only be one of cr,dr)"
         type: "<string> (This can only be one of reward,adjust)"
         status: <string> (This can only be one of success)
@@ -4029,7 +4029,7 @@ components:
           description: (Required) (Minimum length is 4) (Maximum length is 64) (This needs to be your systems customer_id valye of this user)
         email:
           type: string
-          description: (This is email of the user or dummy email like customer_id@merchant.com)
+          description: (This is email of the user )
         mobile:
           $ref: "#/components/schemas/lead_mobile"
         name:
@@ -4049,10 +4049,10 @@ components:
           description: (Pass anything that needs to deligated to API webhook)
       example:
         customer_id: <string> (Required) (Minimum length is 4) (Maximum length is 64) (This needs to be your systems customer_id valye of this user)
-        email: <email> (This is email of the user or dummy email like customer_id@merchant.com)
+        email: <email> (This is email of the user )
         mobile:
           mobile_code: <string> (This can be one of supported mobile codes)
-          mobile: <string> (This is mobile number of the user or dummy mobile number between 4 to 12 digit chars )
+          mobile: <string> (This is mobile number of the user  between 4 to 12 digit chars )
         name: <string> (This is name of this user)
         dob: <string> (This is date of birth in the iso format of this user)
         country: "<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"

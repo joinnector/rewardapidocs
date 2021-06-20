@@ -56,7 +56,7 @@ paths:
       servers:
         - url: "https://platform.nector.io/api/open"
           variables: {}
-  "/settings/{id}":
+  "/subscriptions/{id}":
     get:
       tags:
         - subscriptions
@@ -249,228 +249,6 @@ paths:
         - name: id
           in: query
           description: "(ID of the coupon, passing this will fetch only the coupon whose id matches with the supplied id)"
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <uuid>
-        - name: page
-          in: query
-          description: (Minimum is 1)
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <integer>
-        - name: limit
-          in: query
-          description: (Minimum is 1) (Maximum is 1000)
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <integer>
-        - name: sort
-          in: query
-          description: ""
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: sort_op
-          in: query
-          description: "(This can only be one of ASC,DESC)"
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: x-source
-          in: header
-          description: "(Required)  (This can only be one of mobile,unix,web)"
-          style: simple
-          schema:
-            type: string
-            example: <string>
-        - name: x-timestamp
-          in: header
-          description: ""
-          style: simple
-          schema:
-            type: string
-            example: <number>
-      responses:
-        "200":
-          description: ""
-          headers: {}
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/success"
-
-        "422":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-
-      deprecated: false
-      servers:
-        - url: "https://platform.nector.io/api/v2/merchant"
-          variables: {}
-        - url: "https://devplatform.nector.io/api/v2/merchant"
-          variables: {}
-  "/vouchers/{id}":
-    get:
-      tags:
-        - vouchers
-      summary: Get voucher
-      description: This API fetches details of a voucher.
-      operationId: Getvoucher
-      parameters:
-        - name: id
-          in: path
-          description: (Required)  (ID of the voucher)
-          required: true
-          style: simple
-          schema:
-            type: string
-            example: <uuid>
-        - name: x-source
-          in: header
-          description: "(Required)  (This can only be one of mobile,unix,web)"
-          style: simple
-          schema:
-            type: string
-            example: <string>
-        - name: x-timestamp
-          in: header
-          description: ""
-          style: simple
-          schema:
-            type: string
-            example: <number>
-      responses:
-        "200":
-          description: ""
-          headers: {}
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/success"
-
-        "422":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-
-      deprecated: false
-      servers:
-        - url: "https://platform.nector.io/api/v2/merchant"
-          variables: {}
-        - url: "https://devplatform.nector.io/api/v2/merchant"
-          variables: {}
-  /vouchers:
-    post:
-      tags:
-        - vouchers
-      summary: Create voucher
-      description: This API creates a new voucher when you reward them with meetups or goodies (offers). (A voucher is created against an offers)
-      operationId: Createvoucher
-      parameters:
-        - name: x-source
-          in: header
-          description: "(Required)  (This can only be one of mobile,unix,web)"
-          style: simple
-          schema:
-            type: string
-            example: <string>
-        - name: x-timestamp
-          in: header
-          description: ""
-          style: simple
-          schema:
-            type: string
-            example: <number>
-        - name: x-signature
-          in: header
-          description: ""
-          style: simple
-          schema:
-            type: string
-            example: <string>
-      requestBody:
-        description: ""
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/merchant_create_vouchers"
-            example:
-              lead_id: <uuid> (Required) (This needs to be leads _id value)
-              parent_id: <uuid> (Required) (This needs to be parent_type's _id value)
-              parent_type: <string> (Required) (This can only be one of offers)
-        required: true
-      responses:
-        "200":
-          description: ""
-          headers: {}
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/success"
-
-        "422":
-          description: ""
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/error"
-
-      deprecated: false
-      servers:
-        - url: "https://platform.nector.io/api/v2/merchant"
-          variables: {}
-        - url: "https://devplatform.nector.io/api/v2/merchant"
-          variables: {}
-    get:
-      tags:
-        - vouchers
-      summary: Fetch vouchers
-      description: This API fetches a list of vouchers based on filters.
-      operationId: Fetchvouchers
-      parameters:
-        - name: lead_id
-          in: query
-          description: (Required) (ID of the lead)
-          required: true
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <uuid>
-        - name: parent_id
-          in: query
-          description: "(ID of the parent for which the voucher was created, passing this value will fetch only those vouchers who were created for this parent id)"
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: parent_type
-          in: query
-          description: "(This can only be one of offers, passing this value will fetch only those vouchers who were created for this parent type)"
-          style: form
-          explode: true
-          schema:
-            type: string
-            example: <string>
-        - name: id
-          in: query
-          description: "(ID of the voucher, passing this will fetch only the voucher whose id matches with the supplied id)"
           style: form
           explode: true
           schema:
@@ -843,6 +621,22 @@ paths:
       description: This API fetches a list of deals based on filters.
       operationId: Fetchdeals
       parameters:
+        - name: parent_id
+          in: query
+          description: "(ID of the parent for which the deal was created, passing this value will fetch only those deals who were created for this parent id)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: parent_type
+          in: query
+          description: "(This can only be one of entities, stores passing this value will fetch only those deals who were created for this parent type)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
         - name: sku
           in: query
           description: (SKU of the deal) (Maximum length is 40)
@@ -877,7 +671,15 @@ paths:
             example: <string>
         - name: type
           in: query
-          description: "(This can only be one of general,private,exclusive, passing this will fetch only deals who has type as the passed value)"
+          description: "(This can only be one of voucher, cash, merchandise, meetup, passing this will fetch only deals who has type as the passed value)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: visibility
+          in: query
+          description: "(This can only be one of public, private, passing this will fetch only deals who has visibility as the passed value)"
           style: form
           explode: true
           schema:
@@ -991,6 +793,68 @@ paths:
           variables: {}
         - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
+  /offerredeems:
+    post:
+      tags:
+        - offers
+      summary: Create offerredeem
+      description: "This API redeems an offer by redeeming wallet points."
+      operationId: Createofferredeem
+      parameters:
+        - name: x-source
+          in: header
+          description: "(Required)  (This can only be one of mobile,unix,web)"
+          style: simple
+          schema:
+            type: string
+            example: <string>
+        - name: x-timestamp
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <number>
+        - name: x-signature
+          in: header
+          description: ""
+          style: simple
+          schema:
+            type: string
+            example: <string>
+      requestBody:
+        description: ""
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/merchant_create_offerredeems"
+            example:
+              lead_id: <uuid> (Required) (This needs to be leads _id value)
+              offer_id: <uuid> (Required) (This needs to be offers _id value)
+              currency_id: <uuid> (Required) (This needs to be currencies _id value)
+        required: true
+      responses:
+        "200":
+          description: ""
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/success"
+
+        "422":
+          description: ""
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/error"
+
+      deprecated: false
+      servers:
+        - url: "https://platform.nector.io/api/v2/merchant"
+          variables: {}
+        - url: "https://devplatform.nector.io/api/v2/merchant"
+          variables: {}
   /offers:
     get:
       tags:
@@ -1041,7 +905,15 @@ paths:
             example: <string>
         - name: type
           in: query
-          description: "(This can only be one of general,meet,goodies, passing this will fetch only offers who has type as the passed value)"
+          description: "(This can only be one of promo_code, game, passing this will fetch only offers who has type as the passed value)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: visibility
+          in: query
+          description: "(This can only be one of public, private, passing this will fetch only offers who has visibility as the passed value)"
           style: form
           explode: true
           schema:
@@ -1405,7 +1277,6 @@ paths:
           variables: {}
         - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-
   /surprises:
     get:
       tags:
@@ -1414,6 +1285,22 @@ paths:
       description: This API fetches a list of surprises based on filters.
       operationId: Fetchsurprises
       parameters:
+        - name: parent_id
+          in: query
+          description: "(ID of the parent for which the surprise was created, passing this value will fetch only those surprises who were created for this parent id)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: parent_type
+          in: query
+          description: "(This can only be one of entities, stores passing this value will fetch only those surprises who were created for this parent type)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
         - name: sku
           in: query
           description: (SKU of the surprise) (Maximum length is 40)
@@ -1569,7 +1456,6 @@ paths:
           variables: {}
         - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-
   "/leads/{id}":
     put:
       tags:
@@ -1770,7 +1656,7 @@ paths:
               country: "<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
               currency_id: <uuid> (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
               merchant_trace:
-                nykey: <string> (Pass anything that needs to deligated to API webhook)
+                anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
       responses:
         "200":
@@ -2561,6 +2447,22 @@ paths:
       description: This API fetches a list of tasks based on filters.
       operationId: Fetchtasks
       parameters:
+        - name: parent_id
+          in: query
+          description: "(ID of the parent for which the tasks was created, passing this value will fetch only those tasks who were created for this parent id)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
+        - name: parent_type
+          in: query
+          description: "(This can only be one of entities, stores passing this value will fetch only those tasks who were created for this parent type)"
+          style: form
+          explode: true
+          schema:
+            type: string
+            example: <string>
         - name: sku
           in: query
           description: (SKU of the task) (Maximum length is 40)
@@ -2957,7 +2859,6 @@ paths:
           variables: {}
         - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-
   "/surpriseactivities/{id}":
     get:
       tags:
@@ -3175,7 +3076,6 @@ paths:
           variables: {}
         - url: "https://devplatform.nector.io/api/v2/merchant"
           variables: {}
-
   /wallets:
     post:
       tags:
@@ -3983,27 +3883,27 @@ components:
         lead_id: <uuid> (Required) (This needs to be leads _id value)
         deal_id: <uuid> (Required) (This needs to be deals _id value)
         currency_id: <uuid> (Required) (This needs to be currencies _id value)
-    merchant_create_vouchers:
-      title: merchant_create_vouchers
+    merchant_create_offerredeems:
+      title: merchant_create_offerredeems
       required:
         - lead_id
-        - parent_id
-        - parent_type
+        - offer_id
+        - currency_id
       type: object
       properties:
         lead_id:
           type: string
           description: (Required) (This needs to be leads _id value)
-        parent_id:
+        offer_id:
           type: string
-          description: (Required) (This needs to be parent_type's _id value)
-        parent_type:
+          description: (Required) (This needs to be offers _id value)
+        currency_id:
           type: string
-          description: (Required) (This can only be one of offers)
+          description: (Required) (This needs to be currencies _id value)
       example:
         lead_id: <uuid> (Required) (This needs to be leads _id value)
-        parent_id: <uuid> (Required) (This needs to be parent_type's _id value)
-        parent_type: <string> (Required) (This can only be one of offers)
+        offer_id: <uuid> (Required) (This needs to be offers _id value)
+        currency_id: <uuid> (Required) (This needs to be currencies _id value)
     merchant_create_leads:
       title: merchant_create_leads
       required:
@@ -4142,7 +4042,6 @@ security:
 tags:
   - name: subscriptions
   - name: coupons
-  - name: vouchers
   - name: offers
   - name: stores
   - name: surprises

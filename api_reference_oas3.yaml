@@ -1625,7 +1625,11 @@ paths:
                 mobile: <string> (This is mobile number of the user between 4 to 12 digit chars )
               name: <string> (This is name of this user)
               dob: <string> (This is date of birth in the iso format of this user)
+              gender: <string> (This can only be one of male,female,other)
+              city: <string> (This is city of this user)
+              region: <string> (This is region/state this user)
               country: "<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
+              zipcode: <string> (This is zipcode of this user)
               merchant_trace:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
         required: true
@@ -1786,7 +1790,11 @@ paths:
                 mobile: <string> (This is mobile number of the user between 4 to 12 digit chars )
               name: <string> (This is name of this user)
               dob: <string> (This is date of birth in the iso format of this user)
+              gender: <string> (This can only be one of male,female,other)
+              city: <string> (This is city of this user)
+              region: <string> (This is region/state this user)
               country: "<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
+              zipcode: <string> (This is zipcode of this user)
               currency_id: <uuid> (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
               merchant_trace:
                 anykey: <string> (Pass anything that needs to deligated to API webhook)
@@ -3715,7 +3723,7 @@ paths:
       tags:
         - wallettransactions
       summary: Create wallet transaction
-      description: "This API creates a new wallet transaction. If you want to reward your user with wallet points create a wallet transaction of type reward, or if you want to deduct or adjust wallet points create a wallet transaction of type adjust. When user redeem deals using wallet points a wallet transaction of type redeem is created automatically. (A wallet transaction is created against a wallet)"
+      description: "This API creates a new wallet transaction (create wallet if not exists for the currency if lead and currency is passed). If you want to reward your user with wallet points create a wallet transaction of type reward, or if you want to deduct or adjust wallet points create a wallet transaction of type adjust. When user redeem deals using wallet points a wallet transaction of type redeem is created automatically. (A wallet transaction is created against a wallet)"
       operationId: Createwallettransaction
       parameters:
         - name: x-source
@@ -3753,7 +3761,9 @@ paths:
             schema:
               $ref: "#/components/schemas/merchant_create_wallettransactions"
             example:
-              wallet_id: <uuid> (Required) (This needs to be wallets _id value)
+              wallet_id: <uuid> (One of wallet of lead is required) (This needs to be wallets _id value)
+              lead_id: <uuid> (One of wallet of lead is required) (This needs to be leads _id value)
+              currency_id: <uuid> (Required if lead is passed) (This needs to be currencies _id value)
               amount: <number> (Required) (Minimum is 0)
               hash: <string> (Required) (Minimum length is 4) (Maximum length is 64) (Unique transaction hash value, generate using purpose + user identifier as a seed to avoid duplicate rewards)
               operation: "<string> (Required) (This can only be one of cr,dr)"
@@ -4112,9 +4122,21 @@ components:
         dob:
           type: string
           description: (This is date of birth in the iso format of this user)
+        gender:
+          type: string
+          description: (This can only be one of male,female,other)
+        city:
+          type: string
+          description: (This is city of this user)
+        region:
+          type: string
+          description: (This is region/state this user)
         country:
           type: string
           description: "(This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
+        zipcode:
+          type: string
+          description: (This is zipcode of this user)
         merchant_trace:
           type: object
           description: (Pass anything that needs to deligated to API webhook)
@@ -4125,13 +4147,16 @@ components:
           mobile: <string> (This is mobile number of the user between 4 to 12 digit chars )
         name: <string> (This is name of this user)
         dob: <string> (This is date of birth in the iso format of this user)
+        gender: <string> (This can only be one of male,female,other)
+        city: <string> (This is city of this user)
+        region: <string> (This is region/state this user)
         country: "<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
+        zipcode: <string> (This is zipcode of this user)
         merchant_trace:
           anykey: <string> (Pass anything that needs to deligated to API webhook)
     merchant_create_wallettransactions:
       title: merchant_create_wallettransactions
       required:
-        - wallet_id
         - amount
         - hash
         - operation
@@ -4139,7 +4164,13 @@ components:
       properties:
         wallet_id:
           type: string
-          description: (Required) (This needs to be wallets _id value)
+          description: (One of wallet of lead is required) (This needs to be wallets _id value)
+        lead_id:
+          type: string
+          description: (One of wallet of lead is required) (This needs to be leads _id value)
+        currency_id:
+          type: string
+          description: (Required if lead is passed) (This needs to be currencies _id value)
         amount:
           type: string
           description: (Required) (Minimum is 0)
@@ -4161,7 +4192,9 @@ components:
           type: object
           description: (Pass anything that needs to deligated to API webhook)
       example:
-        wallet_id: <uuid> (Required) (This needs to be wallets _id value)
+        wallet_id: <uuid> (One of wallet of lead is required) (This needs to be wallets _id value)
+        lead_id: <uuid> (One of wallet of lead is required) (This needs to be leads _id value)
+        currency_id: <uuid> (Required if lead is passed) (This needs to be currencies _id value)
         amount: <number> (Required) (Minimum is 0)
         hash: <string> (Required) (Minimum length is 4) (Maximum length is 64) (Unique transaction hash value, generate using purpose + user identifier as a seed to avoid duplicate rewards)
         operation: "<string> (Required) (This can only be one of cr,dr)"
@@ -4232,9 +4265,21 @@ components:
         dob:
           type: string
           description: (This is date of birth in the iso format of this user)
+        gender:
+          type: string
+          description: (This can only be one of male,female,other)
+        city:
+          type: string
+          description: (This is city of this user)
+        region:
+          type: string
+          description: (This is region/state this user)
         country:
           type: string
           description: "(This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
+        zipcode:
+          type: string
+          description: (This is zipcode of this user)
         currency_id:
           type: string
           description: (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
@@ -4249,7 +4294,11 @@ components:
           mobile: <string> (This is mobile number of the user  between 4 to 12 digit chars )
         name: <string> (This is name of this user)
         dob: <string> (This is date of birth in the iso format of this user)
+        gender: <string> (This can only be one of male,female,other)
+        city: <string> (This is city of this user)
+        region: <string> (This is region/state this user)
         country: "<string> (This can only be one of aus,bgd,bra,can,fra,deu,hkg,ind,isr,ita,kor,mex,nzl,pak,phl,sgp,zaf,tha,are,gbr,usa)"
+        zipcode: <string> (This is zipcode of this user)
         currency_id: <uuid> (Recommended) (This needs to be currencies _id value) (If not provided first currency will be selected)
         merchant_trace:
           anykey: <string> (Pass anything that needs to deligated to API webhook)
